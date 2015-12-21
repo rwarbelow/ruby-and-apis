@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/flashcard-game">Flashcard Game</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Debugging Tools</h2>
+<p>In this section, we&#39;ll take a look at a few ways to debug Ruby code, including <code>puts</code> and a Ruby gem called <code>pry</code>.</p>
+
+<h4><code>puts</code> or <code>p</code></h4>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span> <span class="p">:</span><span class="mo">001</span> <span class="o">&gt;</span> <span class="n">percentage</span> <span class="o">=</span> <span class="mi">0</span><span class="o">.</span><span class="mi">75</span> <span class="o">*</span> <span class="mi">100</span>
+           <span class="o">=&gt;</span> <span class="mi">75</span><span class="o">.</span><span class="mi">0</span> 
+<span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span> <span class="p">:</span><span class="mo">002</span> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="n">percentage</span>
+           <span class="mi">75</span><span class="o">.</span><span class="mi">0</span>
+           <span class="o">=&gt;</span> <span class="kp">nil</span> 
+<span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span> <span class="p">:</span><span class="mo">003</span> <span class="o">&gt;</span> <span class="nb">p</span> <span class="n">percentage</span>
+           <span class="mi">75</span><span class="o">.</span><span class="mi">0</span>
+           <span class="o">=&gt;</span> <span class="mi">75</span><span class="o">.</span><span class="mi">0</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span> <span class="p">:</span><span class="mo">001</span> <span class="o">&gt;</span> <span class="n">animals</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;raven&quot;</span><span class="o">]</span>
+           <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;raven&quot;</span><span class="o">]</span> 
+<span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span> <span class="p">:</span><span class="mo">002</span> <span class="o">&gt;</span> <span class="nb">puts</span> <span class="n">animals</span>
+           <span class="n">cat</span>
+           <span class="n">dog</span>
+           <span class="n">raven</span>
+           <span class="o">=&gt;</span> <span class="kp">nil</span> 
+<span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">2</span> <span class="p">:</span><span class="mo">003</span> <span class="o">&gt;</span> <span class="nb">p</span> <span class="n">animals</span>
+           <span class="o">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;raven&quot;</span><span class="o">]</span>
+           <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;raven&quot;</span><span class="o">]</span></code></pre></div>
+
+<h4><code>pry</code></h4>
+
+<ul>
+<li>pseudocode</li>
+</ul>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+

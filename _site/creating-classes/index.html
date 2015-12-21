@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/flashcard-game">Flashcard Game</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Creating Classes</h2>
+<ul>
+<li>what is a class?</li>
+<li>behavior (actions) and attributes</li>
+<li>initialize</li>
+<li>instance variables</li>
+<li>attr<em>reader, attr</em>writer, attr_accessor</li>
+<li>private methods</li>
+<li>require_relative</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Task</span>
+  <span class="kp">attr_reader</span>   <span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:status</span>
+  
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+    <span class="vi">@title</span>       <span class="o">=</span> <span class="n">title</span>
+    <span class="vi">@description</span> <span class="o">=</span> <span class="n">description</span>
+    <span class="vi">@status</span>      <span class="o">=</span> <span class="n">status</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">complete!</span>
+    <span class="n">complete</span> <span class="o">=</span> <span class="s2">&quot;Completed&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+

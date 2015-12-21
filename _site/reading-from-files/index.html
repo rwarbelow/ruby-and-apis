@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/flashcard-game">Flashcard Game</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Reading from Files</h2>
+<p>In this section, we&#39;ll learn how to read in text files using the <a href="http://ruby-doc.org/core-2.2.0/File.html">File</a> class in Ruby. </p>
+
+<ul>
+<li>File.open</li>
+<li>#close</li>
+<li>#read</li>
+<li>File.exist? </li>
+</ul>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">contents</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;cheese-ipsum.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> 
+
+<span class="n">f</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+  <span class="n">contents</span> <span class="o">+=</span> <span class="n">line</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">contents</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="s1">&#39;cheese-ipsum.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">line</span>
+<span class="k">end</span></code></pre></div>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+

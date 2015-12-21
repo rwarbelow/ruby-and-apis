@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/flashcard-game">Flashcard Game</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Scripting Find and Replace</h2>
+<p>In this section, we&#39;ll learn about two string methods <code>#sub</code> and <code>#gsub</code>, figure out how to take in command-line arguments to use in a Ruby program, and create regex patterns to find parts of strings. We&#39;ll use these tools to create a command-line program that can read in a file, find and replace content, and write the output back into that file.  </p>
+
+<h4>String method <code>#sub</code></h4>
+
+<ul>
+<li><a href="http://ruby-doc.org/core-2.2.4/String.html#method-i-gsub">gsub</a></li>
+</ul>
+
+<h4>String method <code>#gsub</code></h4>
+
+<ul>
+<li><a href="http://ruby-doc.org/core-2.2.4/String.html#method-i-gsub">gsub</a></li>
+</ul>
+
+<h4>Taking in command line arguments with <code>ARGV</code></h4>
+
+<ul>
+<li>ARGV</li>
+<li>regex</li>
+<li><a href="http://rubular.com/">rubular</a></li>
+</ul>
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title">Challenge: Scripting Find and Replace</span>
+    <p>
+      Build a Ruby program that is executed with the following command:
+      
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="o">$</span> <span class="nt">ruby</span> <span class="nt">find-and-replace</span><span class="nc">.rb</span> <span class="nt">cheese-ipsum</span><span class="nc">.txt</span> <span class="nt">brie</span> <span class="nt">cheddar</span></code></pre></div>
+
+      `find-and-replace.rb` is the filename of your program. `cheese-ipsum.txt` is the file containing
+      the existing text. "brie" is the word that you're looking for, and "cheddar" is the word
+      you want to put in place of "brie". 
+    </p>
+    <p>
+      Here's some text you can use for the `cheese-ipsum.txt` file:
+
+      
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">Croque</span> <span class="nt">monsieur</span> <span class="nt">feta</span> <span class="nt">swiss</span><span class="o">.</span> <span class="nt">Blue</span> <span class="nt">castello</span> <span class="nt">mozzarella</span> <span class="nt">cheese</span> <span class="nt">strings</span> <span class="nt">the</span> <span class="nt">big</span> <span class="nt">cheese</span> <span class="nt">emmental</span> <span class="nt">cheeseburger</span> <span class="nt">airedale</span> <span class="nt">chalk</span> <span class="nt">and</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Mozzarella</span> <span class="nt">the</span> <span class="nt">big</span> <span class="nt">cheese</span> <span class="nt">the</span> <span class="nt">big</span> <span class="nt">cheese</span> <span class="nt">port-salut</span> <span class="nt">croque</span> <span class="nt">monsieur</span> <span class="nt">brie</span> <span class="nt">camembert</span> <span class="nt">de</span> <span class="nt">normandie</span> <span class="nt">swiss</span><span class="o">.</span> <span class="nt">Roquefort</span> <span class="nt">taleggio</span> <span class="nt">fromage</span> <span class="nt">cheesy</span> <span class="nt">grin</span> <span class="nt">caerphilly</span> <span class="nt">mozzarella</span> <span class="nt">the</span> <span class="nt">big</span> <span class="nt">cheese</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">comes</span> <span class="nt">out</span> <span class="nt">everybody</span> <span class="nt">is</span> <span class="nt">happy</span><span class="o">.</span> <span class="nt">Macaroni</span> <span class="nt">cheese</span> <span class="nt">edam</span> <span class="nt">goat</span> <span class="nt">fromage</span> <span class="nt">frais</span> <span class="nt">cut</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">caerphilly</span> <span class="nt">hard</span> <span class="nt">cheese</span> <span class="nt">cheese</span> <span class="nt">strings</span><span class="o">.</span> <span class="nt">Croque</span> <span class="nt">monsieur</span> <span class="nt">pecorino</span> <span class="nt">mascarpone</span> <span class="nt">airedale</span> <span class="nt">cheeseburger</span> <span class="nt">pepper</span> <span class="nt">jack</span> <span class="nt">gouda</span> <span class="nt">pepper</span> <span class="nt">jack</span><span class="o">.</span> <span class="nt">Fromage</span> <span class="nt">fondue</span> <span class="nt">st</span><span class="o">.</span> <span class="nt">agur</span> <span class="nt">blue</span> <span class="nt">cheese</span> <span class="nt">boursin</span> <span class="nt">swiss</span> <span class="nt">cow</span> <span class="nt">boursin</span> <span class="nt">airedale</span><span class="o">.</span> <span class="nt">Cheeseburger</span> <span class="nt">port-salut</span> <span class="nt">cream</span> <span class="nt">cheese</span> <span class="nt">squirty</span> <span class="nt">cheese</span> <span class="nt">cheesy</span> <span class="nt">feet</span> <span class="nt">cheese</span> <span class="nt">strings</span><span class="o">.</span>
+
+<span class="nt">Parmesan</span> <span class="nt">macaroni</span> <span class="nt">cheese</span> <span class="nt">cut</span> <span class="nt">the</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Camembert</span> <span class="nt">de</span> <span class="nt">normandie</span> <span class="nt">cheese</span> <span class="nt">triangles</span> <span class="nt">bavarian</span> <span class="nt">bergkase</span> <span class="nt">boursin</span> <span class="nt">everyone</span> <span class="nt">loves</span> <span class="nt">blue</span> <span class="nt">castello</span> <span class="nt">swiss</span> <span class="nt">taleggio</span><span class="o">.</span> <span class="nt">Chalk</span> <span class="nt">and</span> <span class="nt">cheese</span> <span class="nt">fromage</span> <span class="nt">pecorino</span> <span class="nt">cheese</span> <span class="nt">strings</span> <span class="nt">brie</span> <span class="nt">hard</span> <span class="nt">cheese</span> <span class="nt">hard</span> <span class="nt">cheese</span> <span class="nt">brie</span><span class="o">.</span> <span class="nt">Squirty</span> <span class="nt">cheese</span> <span class="nt">cow</span> <span class="nt">edam</span> <span class="nt">queso</span> <span class="nt">caerphilly</span> <span class="nt">cauliflower</span> <span class="nt">cheese</span> <span class="nt">chalk</span> <span class="nt">and</span> <span class="nt">cheese</span> <span class="nt">say</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Halloumi</span> <span class="nt">or</span> <span class="nt">manchego</span> <span class="nt">cheesy</span> <span class="nt">grin</span> <span class="nt">squirty</span> <span class="nt">cheese</span> <span class="nt">halloumi</span> <span class="nt">taleggio</span> <span class="nt">melted</span> <span class="nt">cheese</span> <span class="nt">bavarian</span> <span class="nt">bergkase</span><span class="o">.</span> <span class="nt">Queso</span> <span class="nt">roquefort</span> <span class="nt">edam</span> <span class="nt">dolcelatte</span> <span class="nt">mozzarella</span> <span class="nt">pepper</span> <span class="nt">jack</span> <span class="nt">cheese</span> <span class="nt">and</span> <span class="nt">biscuits</span> <span class="nt">say</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Cheese</span> <span class="nt">and</span> <span class="nt">biscuits</span> <span class="nt">roquefort</span> <span class="nt">roquefort</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">comes</span> <span class="nt">out</span> <span class="nt">everybody</span> <span class="nt">is</span> <span class="nt">happy</span> <span class="nt">brie</span> <span class="nt">cheddar</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">comes</span> <span class="nt">out</span> <span class="nt">everybody</span> <span class="nt">is</span> <span class="nt">happy</span> <span class="nt">who</span> <span class="nt">moved</span> <span class="nt">my</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Babybel</span><span class="o">.</span>
+
+<span class="nt">Danish</span> <span class="nt">fontina</span> <span class="nt">mascarpone</span> <span class="nt">who</span> <span class="nt">moved</span> <span class="nt">my</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Fromage</span> <span class="nt">who</span> <span class="nt">moved</span> <span class="nt">my</span> <span class="nt">cheese</span> <span class="nt">cheesy</span> <span class="nt">feet</span> <span class="nt">say</span> <span class="nt">cheese</span> <span class="nt">bocconcini</span> <span class="nt">rubber</span> <span class="nt">cheese</span> <span class="nt">stilton</span> <span class="nt">boursin</span><span class="o">.</span> <span class="nt">Monterey</span> <span class="nt">jack</span> <span class="nt">everyone</span> <span class="nt">loves</span> <span class="nt">stinking</span> <span class="nt">bishop</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">comes</span> <span class="nt">out</span> <span class="nt">everybody</span> <span class="nt">is</span> <span class="nt">happy</span> <span class="nt">cow</span> <span class="nt">cheese</span> <span class="nt">triangles</span> <span class="nt">cut</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">cottage</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Melted</span> <span class="nt">cheese</span> <span class="nt">airedale</span> <span class="nt">cottage</span> <span class="nt">cheese</span> <span class="nt">halloumi</span> <span class="nt">danish</span> <span class="nt">fontina</span> <span class="nt">or</span> <span class="nt">monterey</span> <span class="nt">jack</span> <span class="nt">macaroni</span> <span class="nt">cheese</span> <span class="nt">feta</span><span class="o">.</span> <span class="nt">Parmesan</span> <span class="nt">danish</span> <span class="nt">fontina</span> <span class="nt">smelly</span> <span class="nt">cheese</span> <span class="nt">cheesy</span> <span class="nt">feet</span> <span class="nt">bocconcini</span> <span class="nt">squirty</span> <span class="nt">cheese</span> <span class="nt">goat</span> <span class="nt">lancashire</span><span class="o">.</span> <span class="nt">Brie</span> <span class="nt">taleggio</span> <span class="nt">say</span> <span class="nt">cheese</span> <span class="nt">st</span><span class="o">.</span> <span class="nt">agur</span> <span class="nt">blue</span> <span class="nt">cheese</span> <span class="nt">cheese</span> <span class="nt">and</span> <span class="nt">wine</span> <span class="nt">cauliflower</span> <span class="nt">cheese</span> <span class="nt">taleggio</span> <span class="nt">who</span> <span class="nt">moved</span> <span class="nt">my</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Cheese</span> <span class="nt">and</span> <span class="nt">wine</span> <span class="nt">feta</span> <span class="nt">bocconcini</span> <span class="nt">cheese</span> <span class="nt">slices</span> <span class="nt">bocconcini</span> <span class="nt">stinking</span> <span class="nt">bishop</span> <span class="nt">cheese</span> <span class="nt">and</span> <span class="nt">biscuits</span> <span class="nt">fondue</span><span class="o">.</span> <span class="nt">Cheese</span> <span class="nt">on</span> <span class="nt">toast</span> <span class="nt">manchego</span> <span class="nt">paneer</span> <span class="nt">melted</span> <span class="nt">cheese</span> <span class="nt">say</span> <span class="nt">cheese</span> <span class="nt">stilton</span> <span class="nt">squirty</span> <span class="nt">cheese</span> <span class="nt">cheese</span> <span class="nt">and</span> <span class="nt">biscuits</span><span class="o">.</span> <span class="nt">Mozzarella</span><span class="o">.</span>
+
+<span class="nt">Cheeseburger</span> <span class="nt">edam</span> <span class="nt">croque</span> <span class="nt">monsieur</span><span class="o">.</span> <span class="nt">Stinking</span> <span class="nt">bishop</span> <span class="nt">say</span> <span class="nt">cheese</span> <span class="nt">cream</span> <span class="nt">cheese</span> <span class="nt">halloumi</span> <span class="nt">brie</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">comes</span> <span class="nt">out</span> <span class="nt">everybody</span> <span class="nt">is</span> <span class="nt">happy</span> <span class="nt">mozzarella</span> <span class="nt">mozzarella</span><span class="o">.</span> <span class="nt">Cut</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">red</span> <span class="nt">leicester</span> <span class="nt">blue</span> <span class="nt">castello</span> <span class="nt">bocconcini</span> <span class="nt">boursin</span> <span class="nt">halloumi</span> <span class="nt">when</span> <span class="nt">the</span> <span class="nt">cheese</span> <span class="nt">comes</span> <span class="nt">out</span> <span class="nt">everybody</span> <span class="nt">is</span> <span class="nt">happy</span> <span class="nt">cheese</span> <span class="nt">and</span> <span class="nt">biscuits</span><span class="o">.</span> <span class="nt">Chalk</span> <span class="nt">and</span> <span class="nt">cheese</span> <span class="nt">who</span> <span class="nt">moved</span> <span class="nt">my</span> <span class="nt">cheese</span> <span class="nt">lancashire</span> <span class="nt">taleggio</span> <span class="nt">cheese</span> <span class="nt">on</span> <span class="nt">toast</span> <span class="nt">everyone</span> <span class="nt">loves</span> <span class="nt">monterey</span> <span class="nt">jack</span> <span class="nt">macaroni</span> <span class="nt">cheese</span><span class="o">.</span> <span class="nt">Dolcelatte</span> <span class="nt">stinking</span> <span class="nt">bishop</span> <span class="nt">halloumi</span> <span class="nt">feta</span> <span class="nt">brie</span> <span class="nt">danish</span> <span class="nt">fontina</span> <span class="nt">fromage</span> <span class="nt">frais</span> <span class="nt">everyone</span> <span class="nt">loves</span><span class="o">.</span> <span class="nt">Mozzarella</span> <span class="nt">who</span> <span class="nt">moved</span> <span class="nt">my</span> <span class="nt">cheese</span> <span class="nt">dolcelatte</span> <span class="nt">monterey</span> <span class="nt">jack</span><span class="o">.</span></code></pre></div>
+
+    </p>
+  </div>
+  <div class="card-content card-action orange-text">
+    <span class="activator orange-text">answer</span>
+  </div>
+  <div class="card-reveal">
+    <span class="card-title orange-text">close</span>
+    <p>Here is one possible solution:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">file</span><span class="p">,</span> <span class="n">find</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="no">ARGV</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="n">new_contents</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\s</span><span class="si">#{</span><span class="n">find</span><span class="si">}</span><span class="sr">\s/</span><span class="p">,</span> <span class="s2">&quot; </span><span class="si">#{</span><span class="n">replace</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;Here is the draft:&quot;</span>
+<span class="nb">puts</span> <span class="s2">&quot;----------------&quot;</span>
+<span class="nb">puts</span> <span class="n">new_contents</span>
+<span class="nb">puts</span> <span class="s2">&quot;----------------&quot;</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;Do you want to override the existing contents?&quot;</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="vg">$stdin</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">chomp</span>
+<span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span>
+  <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span> <span class="n">new_contents</span> <span class="p">}</span>
+  <span class="nb">puts</span> <span class="s2">&quot;File has been updated.&quot;</span>
+<span class="k">end</span></code></pre></div>
+
+  </div>
+</div>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+

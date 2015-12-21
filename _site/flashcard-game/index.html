@@ -20,31 +20,31 @@
         <div class="collection">
           <ol>
             
-              <li><a class="collection-item" href="/2015/11/21/ruby-review.html">Ruby Review</a></li>
+              <li><a class="collection-item" href="/ruby-review">Ruby Review</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/debugging-tools.html">Debugging Tools</a></li>
+              <li><a class="collection-item" href="/debugging-tools">Debugging Tools</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/storing-and-manipulating-data-with-arrays.html">Storing and Manipulating Data with Arrays</a></li>
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/storing-and-manipulating-data-with-hashes.html">Storing and Manipulating Data with Hashes</a></li>
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/enumerable-methods.html">Enumerable Methods</a></li>
+              <li><a class="collection-item" href="/enumerable-methods">Enumerable Methods</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/reading-from-files.html">Reading from Files</a></li>
+              <li><a class="collection-item" href="/reading-from-files">Reading from Files</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/writing-to-files.html">Writing to Files</a></li>
+              <li><a class="collection-item" href="/writing-to-files">Writing to Files</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/scripting-find-replace.html">Scripting Find and Replace</a></li>
+              <li><a class="collection-item" href="/scripting-find-and-replace">Scripting Find and Replace</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/reading-from-csvs.html">Reading from CSVs</a></li>
+              <li><a class="collection-item" href="/reading-from-csvs">Reading from CSVs</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/writing-to-csvs.html">Writing to CSVs</a></li>
+              <li><a class="collection-item" href="/writing-to-csvs">Writing to CSVs</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/creating-classes.html">Creating Classes</a></li>
+              <li><a class="collection-item" href="/creating-classes">Creating Classes</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/generating-and-parsing-json.html">Generating and Parsing JSON</a></li>
+              <li><a class="collection-item" href="/generating-and-parsing-json">Generating and Parsing JSON</a></li>
             
-              <li><a class="collection-item" href="/2015/11/21/flashcard-game.html">Flashcard Game</a></li>
+              <li><a class="collection-item" href="/flashcard-game">Flashcard Game</a></li>
             
           </ol>
         </div>
@@ -55,7 +55,10 @@
 <h2>Flashcard Game</h2>
 <p>Create a game whose interface works like this:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">print</span> <span class="s2">&quot;Welcome! Enter the name of the CSV file for your deck: &quot;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">require_relative</span> <span class="s1">&#39;card_generator&#39;</span>
+<span class="n">require_relative</span> <span class="s1">&#39;round&#39;</span>
+
+<span class="nb">print</span> <span class="s2">&quot;Welcome! Enter the name of the CSV file for your deck: &quot;</span>
 
 <span class="n">file</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
 <span class="c1"># This file should look something like &quot;example-cards.csv&quot;.</span>
@@ -82,7 +85,9 @@
 <ol>
 <li>Check whether or not the CSV file exists. If it does not, prompt the user to enter a new filename. </li>
 <li>Output your results into JSON format. </li>
-<li>Allow both CSVs and </li>
+<li>Allow both CSVs and text files containing JSON to be used for card data.</li>
+<li>Use <a href="http://ruby-doc.org/core-2.2.3/Time.html#method-c-now">Time.now</a> to generate a dynamic results file name.</li>
+<li>Put incorrectly answered cards back into the iteration to be asked again.</li>
 </ol>
 
 

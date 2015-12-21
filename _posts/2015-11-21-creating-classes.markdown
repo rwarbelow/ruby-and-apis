@@ -2,6 +2,7 @@
 title: Creating Classes
 layout: post
 date: 2015-11-21 23:59:49
+permalink: creating-classes
 ---
 
 * what is a class?
@@ -13,7 +14,18 @@ date: 2015-11-21 23:59:49
 * require_relative
 
 {% highlight ruby %}
-def foo
-  puts 'foo'
+class Task
+  attr_reader   :title, :description
+  attr_accessor :status
+  
+  def initialize(title, description, status)
+    @title       = title
+    @description = description
+    @status      = status
+  end
+
+  def complete!
+    complete = "Completed"
+  end
 end
 {% endhighlight %}

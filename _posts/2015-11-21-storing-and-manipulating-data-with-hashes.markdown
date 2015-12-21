@@ -2,6 +2,7 @@
 title: Storing and Manipulating Data with Hashes
 layout: post
 date: 2015-11-21 23:59:56
+permalink: storing-and-manipulating-data-with-hashes
 ---
 
 {% highlight ruby %}

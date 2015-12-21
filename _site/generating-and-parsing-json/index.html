@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/flashcard-game">Flashcard Game</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Generating and Parsing JSON</h2>
+<p>In this section, we&#39;ll use the <a href="http://ruby-doc.org/stdlib-2.2.4/libdoc/json/rdoc/JSON.html">JSON module</a> of the Ruby standard library in order to generate JSON from Ruby objects and parse JSON strings into Ruby objects. </p>
+
+<p><code>require &#39;active_support/all&#39;</code></p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="ss">:symbolize_names</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span></code></pre></div>
+
+<h1>skdhf</h1>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
+<span class="k">end</span></code></pre></div>
+
+<h4>fldksh</h4>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
+  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
+<span class="k">end</span></code></pre></div>
+
+<p><code>https://www.coursehero.com/api/flashcards/sets/600582/?api_key=INSERT-KEY-HERE</code></p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&quot;flashcards&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="p">{</span>
+<span class="nt">&quot;fcid&quot;</span><span class="p">:</span> <span class="mi">49410534</span><span class="p">,</span>
+<span class="nt">&quot;order&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="s2">&quot;method&quot;</span><span class="p">,</span>
+<span class="nt">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;A function that manipulates the output. These must begin with a lowercase. For example: first_name = gets.chomp.capitalize!&quot;</span><span class="p">,</span>
+<span class="nt">&quot;hint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;example&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;term_image&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="nt">&quot;hint_image&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="nt">&quot;fcid&quot;</span><span class="p">:</span> <span class="mi">49410535</span><span class="p">,</span>
+<span class="nt">&quot;order&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="s2">&quot;gets&quot;</span><span class="p">,</span>
+<span class="nt">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;accepts a single line of data from the standard input, and assigns the string typed to the variable&quot;</span><span class="p">,</span>
+<span class="nt">&quot;hint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;example&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;term_image&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="nt">&quot;hint_image&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="nt">&quot;fcid&quot;</span><span class="p">:</span> <span class="mi">49410536</span><span class="p">,</span>
+<span class="nt">&quot;order&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="s2">&quot;chomp&quot;</span><span class="p">,</span>
+<span class="nt">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;a string method and gets retrieves only strings from your keyboard. Gets returns a string and a newline character, while chomp removes this newline.&quot;</span><span class="p">,</span>
+<span class="nt">&quot;hint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;example&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;term_image&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="nt">&quot;hint_image&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="nt">&quot;fcid&quot;</span><span class="p">:</span> <span class="mi">49410537</span><span class="p">,</span>
+<span class="nt">&quot;order&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="s2">&quot;capitalize!&quot;</span><span class="p">,</span>
+<span class="nt">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;capitalizes the string, but does not make a copy becuase a \&quot;!\&quot; was used at the end.&quot;</span><span class="p">,</span>
+<span class="nt">&quot;hint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;example&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;term_image&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="nt">&quot;hint_image&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="nt">&quot;fcid&quot;</span><span class="p">:</span> <span class="mi">49410538</span><span class="p">,</span>
+<span class="nt">&quot;order&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="nt">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;An object in Ruby holds and manipulates an arbitrary sequence of one or more bytes, typically representing characters that represent human language. The simplest of these are enclosed in single quotes (the apostrophe character). The text within the quote marks is the value of this object.&quot;</span><span class="p">,</span>
+<span class="nt">&quot;hint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;example&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="nt">&quot;term_image&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="nt">&quot;hint_image&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+<span class="p">]}</span></code></pre></div>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+
