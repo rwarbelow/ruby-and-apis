@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/2015/11/21/ruby-review.html">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/debugging-tools.html">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/storing-and-manipulating-data-with-arrays.html">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/storing-and-manipulating-data-with-hashes.html">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/enumerable-methods.html">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/reading-from-files.html">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/writing-to-files.html">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/scripting-find-replace.html">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/reading-from-csvs.html">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/writing-to-csvs.html">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/creating-classes.html">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/generating-and-parsing-json.html">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/2015/11/21/flashcard-game.html">Flashcard Game</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Flashcard Game</h2>
+<p>Create a game whose interface works like this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">print</span> <span class="s2">&quot;Welcome! Enter the name of the CSV file for your deck: &quot;</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
+<span class="c1"># This file should look something like &quot;example-cards.csv&quot;.</span>
+
+<span class="n">cards</span> <span class="o">=</span> <span class="no">CardGenerator</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">create_cards</span>
+<span class="c1"># This method should return an array of shuffled card objects</span>
+
+<span class="n">round</span> <span class="o">=</span> <span class="no">Round</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span>
+<span class="n">round</span><span class="o">.</span><span class="n">start</span>
+<span class="c1"># This should begin the game. The game will iterate through all cards </span>
+<span class="c1"># in the round and ask the user for an answer. The answers should be</span>
+<span class="c1"># stored by the round.</span>
+
+<span class="c1"># At the end of the game, the round should tell the user how many</span>
+<span class="c1"># questions were answered correctly. Then, the program should</span>
+<span class="c1"># save the results to a CSV where the headers are </span>
+<span class="c1"># question, answer, user_response, result (correct or incorrect)</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;Your results have been saved to &#39;results.csv&#39;.&quot;</span>
+<span class="nb">puts</span> <span class="s2">&quot;Thank you for playing!&quot;</span></code></pre></figure>
+
+<h4>Extensions</h4>
+
+<ol>
+<li>Check whether or not the CSV file exists. If it does not, prompt the user to enter a new filename. </li>
+<li>Output your results into JSON format. </li>
+<li>Allow both CSVs and </li>
+</ol>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+
