@@ -4,7 +4,9 @@ layout: default
 
 <h3>Topic List</h3>
 
+<ol>
 {% for post in site.posts %}
-  <h5><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h5>
+  <li><h5><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h5></li>
   <p>{{ post.content | strip_html | truncatewords:20}}</p>
 {% endfor %}
+</ol>

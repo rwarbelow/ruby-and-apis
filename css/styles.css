@@ -37,6 +37,10 @@ main {
   flex: 1 0 auto;
 }
 
+.break {
+  padding-top: 30px;
+  border-bottom: 2px solid black;
+}
 /* github style pygments theme for jekyll */
 /* from https://github.com/aahan/pygments-github-style */
 

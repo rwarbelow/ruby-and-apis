@@ -55,6 +55,7 @@
 <h2>Creating Classes</h2>
 <ul>
 <li>what is a class?</li>
+<li>class naming conventions</li>
 <li>behavior (actions) and attributes</li>
 <li>initialize</li>
 <li>instance variables</li>
@@ -66,7 +67,7 @@
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Task</span>
   <span class="kp">attr_reader</span>   <span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span>
   <span class="kp">attr_accessor</span> <span class="ss">:status</span>
-  
+
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
     <span class="vi">@title</span>       <span class="o">=</span> <span class="n">title</span>
     <span class="vi">@description</span> <span class="o">=</span> <span class="n">description</span>
@@ -77,6 +78,32 @@
     <span class="n">complete</span> <span class="o">=</span> <span class="s2">&quot;Completed&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre></div>
+
+<p>Data passed into the initialize method can also come through as a hash. This is more flexible since the order of the data does not matter. </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Task</span>
+  <span class="kp">attr_reader</span>   <span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:status</span>
+  
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="vi">@title</span>       <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="ss">:title</span><span class="o">]</span>
+    <span class="vi">@description</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="ss">:description</span><span class="o">]</span>
+    <span class="vi">@status</span>      <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="ss">:status</span><span class="o">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">complete!</span>
+    <span class="n">complete</span> <span class="o">=</span> <span class="s2">&quot;Completed&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Iterate through the collection of hashes below and create an <code>Animal</code> object:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">animals</span> <span class="o">=</span> <span class="o">[</span>
+            <span class="p">{</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="p">},</span>
+          <span class="o">]</span></code></pre></div>
 
 
        </div>

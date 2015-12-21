@@ -59,205 +59,286 @@
 <div class="highlight"><pre><code class="language-text" data-lang="text">$ touch review.rb
 $ ruby review.rb
 </code></pre></div>
+<div class="break"></div>
+
 <h4>Variable Naming Conventions</h4>
+
+<p>Variable names should indicate what data the variable stores. Someone who did not write your program should easily be able to understand
+what the program does based on variable and method names.</p>
+
+<p>In Ruby, variable names should start with a lowercase letter and consist of lowercase letters and/or underscores. It is possible to use numbers, but it&#39;s not preferred. </p>
+
+<p>Including the name of the data type is frowned upon. </p>
+
+<div>
+YES:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">message</span>      <span class="o">=</span> <span class="s2">&quot;Hello, world&quot;</span>
+<span class="n">animals</span>      <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;fish&quot;</span><span class="p">,</span> <span class="s2">&quot;red panda&quot;</span><span class="p">,</span> <span class="s2">&quot;elephant&quot;</span><span class="o">]</span>
+<span class="n">student_ages</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">max</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="ss">ellie</span><span class="p">:</span> <span class="mi">14</span> <span class="p">}</span></code></pre></div>
+
+
+NO:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">myVar</span> <span class="o">=</span> <span class="s2">&quot;variable&quot;</span>
+<span class="n">task_1</span> <span class="o">=</span> <span class="s2">&quot;build cabinet&quot;</span>
+<span class="n">foods_array</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;watermelon&quot;</span><span class="p">,</span> <span class="s2">&quot;sandwich&quot;</span><span class="p">,</span> <span class="s2">&quot;ice cream&quot;</span><span class="o">]</span></code></pre></div>
+
+</div>
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
+    <span class="card-title orange-text"><b>Try it:</b> Variable Names</span>
     <p>
-      I am a very simple card. I am good at containing small bits of information.
-    </p>
+      In your `ruby-review.rb` file, create three variables:
+    </p> <br>
+    <li>a string of text containing the search term for a find-and-replace method</li>
+    <li>an array of final grades (as percentages) for English class</li>
+    <li>a hash representing ingredients and amount called for in a recipe</li>
   </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
-
-  </div>
+  
 </div>
+
+<div class="break"></div>
 
 <h4>Data Types</h4>
 
+<h5>String</h5>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">&quot;here is a string&quot;</span></code></pre></div>
+
+<h5>Integer</h5>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">48</span></code></pre></div>
+
+<h5>Float</h5>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">3</span><span class="o">.</span><span class="mi">14</span></code></pre></div>
+
+<h5>Array</h5>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">92</span><span class="o">]</span></code></pre></div>
+
+<h5>Hash</h5>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># &quot;old syntax&quot;</span>
+<span class="p">{</span> <span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="ss">:another_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;second value&quot;</span> <span class="p">}</span>
+<span class="c1"># or</span>
+<span class="p">{</span> 
+  <span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+  <span class="ss">:another_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;second value&quot;</span> 
+<span class="p">}</span>
+
+<span class="c1"># &quot;new syntax&quot;</span>
+<span class="p">{</span> <span class="ss">key</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="ss">another_key</span><span class="p">:</span> <span class="s2">&quot;second value&quot;</span> <span class="p">}</span>
+<span class="c1"># or</span>
+<span class="p">{</span> 
+  <span class="ss">key</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+  <span class="ss">another_key</span><span class="p">:</span> <span class="s2">&quot;second value&quot;</span> 
+<span class="p">}</span></code></pre></div>
+
+
+<h5>Symbol</h5>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">:category</span>
+<span class="ss">:student_id</span></code></pre></div>
+
+
+<h5>Boolean</h5>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="kp">true</span>
+<span class="kp">false</span></code></pre></div>
+
+
+<h5>Regular Expression</h5>
+
+Regular Expressions (also known as Regex) are used to match or scan for patterns in a string. We'll talk a little more about these later, but here's an example of a Regex that would match from the start of a string (`\A`) all lowercase letters `[a-z]` to the end of the string `\z`. 
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">/\A[a-z]\z/</span></code></pre></div>
+
+
+<div class="break"></div>
+<h4>Objects and Methods</h4> 
+
+Objects have methods that can be called upon them. For example:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">&quot;my message&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="c1">#=&gt; [&quot;my&quot;, &quot;message&quot;]</span></code></pre></div>
+
+
+<h5>Common String Methods</h5>
+
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
+    <span class="card-title orange-text"><b>Try it: </b>String Methods and Ruby Docs</span>
     <p>
-      I am a very simple card. I am good at containing small bits of information.
+      Find and try out five methods from the <a href="http://ruby-doc.org/core-2.2.0/String.html">Ruby String Docs</a>. Add these methods to your `ruby-review.rb` file with comments to explain what they do.
     </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
-
   </div>
 </div>
 
-<h4>Objects and Methods</h4>
+<div class="break"></div>
+
+<h4>Conditional Statements</h4>
+
+<p>If/elsif/else statements are examples of control flow. What goes after the <code>if</code> is something that will evalutate to <code>true</code> or <code>truthy</code>. </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">secret_number</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">if</span> <span class="n">secret_number</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="nb">puts</span> <span class="s2">&quot;The number is positive&quot;</span>
+<span class="k">elsif</span> <span class="n">secret_number</span> <span class="o">&lt;</span> <span class="mi">0</span>
+  <span class="nb">puts</span> <span class="s2">&quot;The number is negative&quot;</span>
+<span class="k">else</span>
+  <span class="nb">puts</span> <span class="s2">&quot;The number is 0&quot;</span>
+<span class="k">end</span></code></pre></div>
+
+
+Everything in Ruby is `truthy` except for `nil` and `false`. 
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">if</span> <span class="n">message</span>
+  <span class="nb">puts</span> <span class="s2">&quot;There is a message&quot;</span>
+<span class="k">else</span>
+  <span class="nb">puts</span> <span class="s2">&quot;There is not a message&quot;</span>
+<span class="k">end</span></code></pre></div>
+
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
+    <span class="card-title orange-text"><b>Try it: </b>Conditionals</span>
     <p>
-      I am a very simple card. I am good at containing small bits of information.
+      Create two conditionals:
     </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
-
+    <br>
+    <li>Check if an array is empty. If it is, print that out to the screen.</li>
+    <li>Check if a hash of groceries has the key :tomato. If it does, print out the value for that key. If it does not, print "No tomatoes".</li>
   </div>
 </div>
 
-<h4>Common String Methods</h4>
-
-<div class="card blue-grey darken-1">
-  <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
-    <p>
-      I am a very simple card. I am good at containing small bits of information.
-    </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
-
-  </div>
-</div>
+<div class="break"></div>
 
 <h4>Control Flow</h4>
 
-<div class="card blue-grey darken-1">
-  <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
-    <p>
-      I am a very simple card. I am good at containing small bits of information.
-    </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
+<p>While loops can also be used to determine what happens next in a program. Like the <code>if/else</code> statement, the expression after <code>while</code> should evaluate to <code>true</code> or <code>false</code>. </p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
+<p>For example:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">flowers</span> <span class="o">=</span> <span class="sx">%w(daisy rose lily iris orchid)</span>
+<span class="c1"># %w() is a shorthand for creating an array of strings</span>
+
+<span class="k">while</span> <span class="n">flowers</span><span class="o">.</span><span class="n">any?</span>
+  <span class="n">current_flower</span> <span class="o">=</span> <span class="n">flowers</span><span class="o">.</span><span class="n">pop</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Planting </span><span class="si">#{</span><span class="n">current_flower</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">&quot;No more flowers.&quot;</span></code></pre></div>
+
+
+<div class="break"></div>
+
+<h4>Iteration</h4> 
+
+We'll talk more about iteration in another section, but the most basic form of iteration is the `#each` method. This can be used on both hashes and arrays.
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">flowers</span> <span class="o">=</span> <span class="sx">%w(daisy rose lily iris orchid)</span>
+
+<span class="n">flowers</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">flower</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Planting </span><span class="si">#{</span><span class="n">flower</span><span class="si">}</span><span class="s2">.&quot;</span>
 <span class="k">end</span></code></pre></div>
 
-  </div>
-</div>
 
-<h4>Iteration</h4>
+It's important to remember that the return value of `#each` is <b>the original array</b>.
+
+<p>Here's an example using `#each` on a hash:</p>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">groceries</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">pickle</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="ss">apple</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">zucchini</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="ss">jam</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
+
+<span class="n">groceries</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">food</span><span class="p">,</span> <span class="n">quantity</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">&quot;You need </span><span class="si">#{</span><span class="n">quantity</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">food</span><span class="si">}</span><span class="s2">s.&quot;</span>
+<span class="k">end</span></code></pre></div>
+
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
+    <span class="card-title orange-text"><b>Try it: </b>Iterating Through a Hash</span>
     <p>
-      I am a very simple card. I am good at containing small bits of information.
+      Create a hash of universities and their tuition costs. Iterate over the hash and print out a string like this: "UC Denver costs $15,000 per year."
     </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
-
   </div>
 </div>
 
 <h4>Input/Output</h4>
 
-<p>gets + puts + print</p>
+<p><li><code>print</code> displays a value on the screen <b>without</b> a newline character at the end. The return value is <code>nil</code>.</li>
+<li><code>puts</code> displays a value on the screen <b>with</b> a newline character at the end. The return value is <code>nil</code>.</li>
+<li><code>gets</code> waits for input from the user and inserts a newline character at the end. The return value is the input from the user</li>
+<li><code>gets.chomp</code> waits for input from the user and slices off the newline character at the end. The return value is the input from the user</li>
+<li><code>gets.strip</code> waits for input from the user and slices off any whitespace at the beginning or end. The return value is the input from the user</li></p>
+
+<p><b>It&#39;s important to remember that no matter what the user types (a number, brackets, etc.), the input always comes into the program as a string.</b></p>
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
+    <span class="card-title orange-text"><b>Try it: </b>Getting User Input</span>
     <p>
-      I am a very simple card. I am good at containing small bits of information.
+      Combine some of the skills we're reviewed. Write a simple program that prompts a user to type one task at a time for a to-do list and saves each task in an array. The program should continue prompting the user for input until the keyword "done" is entered. 
     </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
-
   </div>
 </div>
 
 <h4>Defining Methods</h4>
 
-<div class="card blue-grey darken-1">
-  <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
-    <p>
-      I am a very simple card. I am good at containing small bits of information.
-    </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
+<p>We&#39;ll focus mainly on defining methods on objects, but it&#39;s possible to define methods in the global namespace. After a method has been define, it needs to be called in order for the code to be executed:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">first_num</span><span class="p">,</span> <span class="n">second_num</span><span class="p">,</span> <span class="n">third_num</span><span class="p">)</span>
+  <span class="n">first_num</span> <span class="o">*</span> <span class="n">second_num</span> <span class="o">*</span> <span class="n">third_num</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">multiply</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span></code></pre></div>
+
+
+A method that returns either `true` or `false` is called a predicate method. The convention is to define these methods with a question mark at the end of the method name like this:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">equal?</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
+  <span class="n">first</span> <span class="o">==</span> <span class="n">second</span>
+<span class="k">end</span>
+
+<span class="k">if</span> <span class="nb">equal?</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">&quot;The two arguments are equal.&quot;</span>
 <span class="k">end</span></code></pre></div>
 
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title orange-text"><b>Try it: </b>Defining Methods</span>
+    <p>
+      Define a method that squares a number.
+    </p>
   </div>
 </div>
 
 <h4>Variable Scope</h4>
 
-<div class="card blue-grey darken-1">
-  <div class="card-content white-text">
-    <span class="card-title">Challenge #1</span>
-    <p>
-      I am a very simple card. I am good at containing small bits of information.
-    </p>
-  </div>
-  <div class="card-content card-action orange-text">
-    <span class="activator orange-text">answer</span>
-  </div>
-  <div class="card-reveal">
-    <span class="card-title orange-text">close</span>
+<p>Not all variables are available everywhere within a program. For example, if a variable is defined within a method, it cannot be accessed outside that method. This will not work:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">my_method</span>
+  <span class="n">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
+<span class="k">end</span>
 
-  </div>
-</div>
+<span class="nb">puts</span> <span class="n">numbers</span>
+<span class="c1"># this will not work!</span></code></pre></div>
 
 
        </div>
