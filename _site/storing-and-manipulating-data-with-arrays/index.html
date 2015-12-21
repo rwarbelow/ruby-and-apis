@@ -53,14 +53,73 @@
 
 
 <h2>Storing and Manipulating Data with Arrays</h2>
-<ul>
-<li><a href="http://ruby-doc.org/core-2.2.0/Array.html">array docs</a></li>
-<li>what are arrays?</li>
-<li>removing from an array</li>
-<li>adding to an array</li>
-<li>counting an array</li>
-<li>accessing data via index position of array</li>
-</ul>
+<p>In this section, we&#39;ll store and access data in arrays. Think of arrays as boxes of data. You might want to take a look at the <a href="http://ruby-doc.org/core-2.2.0/Array.html">Array docs</a>. </p>
+
+<h4>Removing Elements from an Array</h4>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">clothing</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;socks&quot;</span><span class="p">,</span> <span class="s2">&quot;shirts&quot;</span><span class="p">,</span> <span class="s2">&quot;gloves&quot;</span><span class="p">,</span> <span class="s2">&quot;dresses&quot;</span><span class="p">,</span> <span class="s2">&quot;pants&quot;</span><span class="o">]</span>
+
+<span class="n">clothing</span><span class="o">.</span><span class="n">pop</span>  
+<span class="c1"># this removes the last element of the array permanently and returns it</span>
+
+<span class="n">clothing</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;gloves&quot;</span><span class="p">)</span>  
+<span class="c1"># this removes the element that matches the argument</span></code></pre></div>
+
+
+<h4>Adding Elements to an Array</h4>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">clothing</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;socks&quot;</span><span class="p">,</span> <span class="s2">&quot;shirts&quot;</span><span class="p">,</span> <span class="s2">&quot;gloves&quot;</span><span class="p">,</span> <span class="s2">&quot;dresses&quot;</span><span class="p">,</span> <span class="s2">&quot;pants&quot;</span><span class="o">]</span>
+
+<span class="n">clothing</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;hats&quot;</span>
+<span class="n">clothing</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;hats&quot;</span><span class="p">)</span>  
+<span class="c1"># these two methods are synonymous</span></code></pre></div>
+
+
+<h4>Accessing Elements via Index Position</h4>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">clothing</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;socks&quot;</span><span class="p">,</span> <span class="s2">&quot;shirts&quot;</span><span class="p">,</span> <span class="s2">&quot;gloves&quot;</span><span class="p">,</span> <span class="s2">&quot;dresses&quot;</span><span class="p">,</span> <span class="s2">&quot;pants&quot;</span><span class="o">]</span>
+
+<span class="n">clothing</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="c1"># will return the first element &quot;socks&quot;</span>
+<span class="n">clothing</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="c1"># will return the fourth element &quot;dresses&quot;</span>
+<span class="n">clothing</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="c1"># will return the last element &quot;pants&quot;</span></code></pre></div>
+
+
+<h4>Replacing Elements in an Array</h4>
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">clothing</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;socks&quot;</span><span class="p">,</span> <span class="s2">&quot;shirts&quot;</span><span class="p">,</span> <span class="s2">&quot;gloves&quot;</span><span class="p">,</span> <span class="s2">&quot;dresses&quot;</span><span class="p">,</span> <span class="s2">&quot;pants&quot;</span><span class="o">]</span>
+
+<span class="n">clothing</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;boots&quot;</span>
+<span class="c1"># this will replace &quot;socks&quot; (element 0) with &quot;boots&quot;</span></code></pre></div>
+
+
+<h4>Counting Elements in an Array</h4> 
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">clothing</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;socks&quot;</span><span class="p">,</span> <span class="s2">&quot;shirts&quot;</span><span class="p">,</span> <span class="s2">&quot;gloves&quot;</span><span class="p">,</span> <span class="s2">&quot;dresses&quot;</span><span class="p">,</span> <span class="s2">&quot;pants&quot;</span><span class="o">]</span>
+
+<span class="n">clothing</span><span class="o">.</span><span class="n">count</span>
+<span class="n">clothing</span><span class="o">.</span><span class="n">size</span>
+<span class="n">clothing</span><span class="o">.</span><span class="n">length</span></code></pre></div>
+
+
+These three methods will return the same value. However, they have different implications for performance. You can read more about that [here](http://batsov.com/articles/2014/02/17/the-elements-of-style-in-ruby-number-13-length-vs-size-vs-count/). 
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title orange-text"><b>Try it: </b>Gripe Machine -- Getting User Input</span>
+    <p>Open your file `gripe_machine.rb`</p> <br>
+    <p>
+      Modify your program to save each user input in a `gripes` array. After each input from the user, print out how many total compaints have been entered. 
+    </p>
+    <br>
+    <p>
+      If the user enters the word "delete" instead of a gripe, print out all of the gripes with the position number listed next to the gripe. Then prompt the user to enter the position number they wish to delete. After they enter a number, delete that gripe and continue prompting for a new gripe.
+    </p>
+  </div>
+</div>
 
 
        </div>
