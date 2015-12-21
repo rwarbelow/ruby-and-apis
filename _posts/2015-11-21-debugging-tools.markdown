@@ -37,7 +37,7 @@ If you're not sure what a value is in your program at a certain point in tine, y
            => ["cat", "dog", "raven"]
 {% endhighlight %}
 
-Let's try out using `p` with this piece of code:
+Let's try out using `puts` with this piece of code:
 
 {% highlight ruby %}
 flowers = %w(daisy rose lily iris orchid)
@@ -80,7 +80,7 @@ While in pry, `exit` will release your program from the pry and continue executi
   <div class="card-content white-text">
     <span class="card-title orange-text"><b>Try it: </b>Debugging with Pry</span>
     <p>
-      Stick `require 'pry'; binding.pry` into your task list program from the Ruby Review. What variables are available in which places? Can you see different values depending on which line you put the pry? 
+      Stick `require 'pry'; binding.pry` into your gripes program from the Ruby Review. What variables are available in which places? Can you see different values depending on which line you put the pry? 
     </p>
   </div>
 </div>
