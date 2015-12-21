@@ -288,7 +288,7 @@ end
   <div class="card-content white-text">
     <span class="card-title orange-text"><b>Try it: </b>Defining Methods</span>
     <p>
-      Define a method that squares a number.
+      Define and call a method that squares a number.
     </p>
   </div>
 </div>
