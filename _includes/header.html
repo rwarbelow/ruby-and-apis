@@ -4,7 +4,7 @@
   <title>{{ site.title }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 
-  <link href="/css/styles.css" rel="stylesheet">
+  <link href="{{ site.baseurl }}/css/styles.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
@@ -20,7 +20,7 @@
         <div class="collection">
           <ol>
             {% for post in site.posts %}
-              <li><a class="collection-item" href="{{ post.url }}">{{ post.title }}</a></li>
+              <li><a class="collection-item" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
             {% endfor %}
           </ol>
         </div>
