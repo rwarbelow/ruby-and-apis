@@ -55,17 +55,60 @@
 <h2>Writing to Files</h2>
 <p>In this section, we&#39;ll use the <a href="http://ruby-doc.org/core-2.2.0/File.html">File</a> class in order to write to new files, append to existing files, and overwrite existing files. We&#39;ll also learn about additional modes that can be passed into the <code>File.open</code> method. </p>
 
-<ul>
-<li>read only (&quot;r&quot;)</li>
-<li>write only (&quot;w&quot;)</li>
-<li>append only (&quot;a&quot;)</li>
-<li><p>read-write permission for appending (&quot;a+&quot;)</p></li>
-<li><p>(&#39;myfile.txt&#39;, &#39;r+&#39;), (&#39;myfile.txt&#39;, &#39;w+&#39;)</p></li>
-</ul>
+<p>To write to a file, we open a file in &quot;write&quot; mode. This mode is indicated by <code>&quot;w&quot;</code> as the second argument. WARNING: Write mode will overwrite anything already existing in the file. The two examples below will have the same effect. </p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;write-example.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Hello, world!&quot;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Here&#39;s another line.&quot;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span></code></pre></div>
+
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;write-example.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span> 
+  <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Hello, world!&quot;</span>
+  <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Here&#39;s another line.&quot;</span>
+<span class="k">end</span>
+<span class="c1"># this will automatically close the file handler for you</span></code></pre></div>
+
+
+If you want to be able to read and write to the file, use the mode `"r+"`. This will allow you to write to the file. Where you write to depends on where the position is at that moment. It will overwrite what already exists in those specific position numbers, but it will not overwrite the whole file.
+
+Let's try it in irb:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">read</span>
+<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">rewind</span>
+<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">rewind</span>
+<span class="n">file</span><span class="o">.</span><span class="n">read</span></code></pre></div>
+
+
+What happened in the above example? 
+
+To read and append to the file, use the mode `"a+"`.
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">read</span>
+<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">rewind</span>
+<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">file</span><span class="o">.</span><span class="n">rewind</span>
+<span class="n">file</span><span class="o">.</span><span class="n">read</span></code></pre></div>
+
+
+What happened in the above example? How is it different from the previous example? 
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title orange-text"><b>Try it: </b>Writing gripes to a file</span>
+    <p>
+      Open your gripes program. When the user wants to quit, save the gripes to a file. The user should be able to run the program multiple times without overwriting existing gripes. 
+    </p>
+  </div>
+</div>
 
 
        </div>

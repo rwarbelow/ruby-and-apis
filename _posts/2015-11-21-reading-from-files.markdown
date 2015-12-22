@@ -7,7 +7,7 @@ permalink: reading-from-files
 
 In this section, we'll learn how to read in text files using the [File](http://ruby-doc.org/core-2.2.0/File.html) class in Ruby. Read more about the File class [here](https://rubymonk.com/learning/books/1-ruby-primer/chapters/42-introduction-to-i-o/lessons/90-using-the-file-class) on RubyMonk. 
 
-`File.open(filename)` creates a Ruby handler to interact with that file. Let's try it. First, create a text file `example.txt` with this content:
+`File.open(filename, 'r')` creates a Ruby handler to read with that file. Let's try it. First, create a text file `example.txt` with this content:
 
 ```
 Here is the first line
@@ -18,7 +18,7 @@ Finally, one last line
 Go into irb (`$ irb` from the command line) and try this out:
 
 {% highlight ruby %}
-f = File.open('example.txt') 
+f = File.open('example.txt', 'r') 
 f.pos
 f.read
 f.pos
@@ -48,7 +48,7 @@ Other things you may want to do with files:
 {% highlight ruby %}
 contents = ''
 
-f = File.open('example.txt', "r") 
+f = File.open('example.txt', 'r') 
 
 f.each_line do |line|
   contents += line
@@ -61,7 +61,7 @@ puts contents
 
 
 {% highlight ruby %}
-File.readlines('example.txt').each do |line|
+File.readlines('example.txt', 'r').each do |line|
   puts line
 end
 {% endhighlight %}

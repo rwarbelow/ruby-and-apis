@@ -55,14 +55,14 @@
 <h2>Reading from Files</h2>
 <p>In this section, we&#39;ll learn how to read in text files using the <a href="http://ruby-doc.org/core-2.2.0/File.html">File</a> class in Ruby. Read more about the File class <a href="https://rubymonk.com/learning/books/1-ruby-primer/chapters/42-introduction-to-i-o/lessons/90-using-the-file-class">here</a> on RubyMonk. </p>
 
-<p><code>File.open(filename)</code> creates a Ruby handler to interact with that file. Let&#39;s try it. First, create a text file <code>example.txt</code> with this content:</p>
+<p><code>File.open(filename, &#39;r&#39;)</code> creates a Ruby handler to read with that file. Let&#39;s try it. First, create a text file <code>example.txt</code> with this content:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">Here is the first line
 And another line
 Finally, one last line
 </code></pre></div>
 <p>Go into irb (<code>$ irb</code> from the command line) and try this out:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">)</span> 
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> 
 <span class="n">f</span><span class="o">.</span><span class="n">pos</span>
 <span class="n">f</span><span class="o">.</span><span class="n">read</span>
 <span class="n">f</span><span class="o">.</span><span class="n">pos</span>
@@ -92,7 +92,7 @@ Other things you may want to do with files:
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">contents</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> 
+<span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> 
 
 <span class="n">f</span><span class="o">.</span><span class="n">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
   <span class="n">contents</span> <span class="o">+=</span> <span class="n">line</span>
@@ -105,7 +105,7 @@ Other things you may want to do with files:
 
 
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">File</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="n">line</span>
 <span class="k">end</span></code></pre></div>
 
