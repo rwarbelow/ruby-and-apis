@@ -73,3 +73,28 @@ These three methods will return the same value. However, they have different imp
     </p>
   </div>
 </div>
+
+Possible answer:
+
+{% highlight ruby %}
+
+input = ""
+gifts = []
+
+while input != "done"
+  if input == "delete"
+    puts "Here are your current gifts: #{gifts}."
+    puts "Which index position would you like to delete?"
+    index = gets.chomp.to_i
+    gifts.delete_at(index)
+  else
+    gifts << input unless input == ""
+    puts "Don't be so greedy" if input.length > 20
+  end
+  puts "You have #{gifts.length} gifts in your list."
+  print "Enter a gift: "
+  input = gets.chomp
+end
+
+puts "Goodbye!"
+{% endhighlight %}
