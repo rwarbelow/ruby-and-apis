@@ -73,7 +73,7 @@ Ashley,Grant,agrantc@trellian.com,California
 Bobby,Rose,brosed@baidu.com,District of Columbia
 Timothy,Castillo,tcastilloe@yelp.com,California
 </code></pre></div>
-<p>Let&#39;s play around in <code>irb</code> first to see what we&#39;re doing. Since CSV is not part of the Ruby core library, we need to require it:</p>
+<p>Let&#39;s play around in <code>irb</code> first to see what we&#39;re doing. Since CSV is not part of the Ruby core library, we need to require it. If we forget this step, we&#39;ll see an error <code>Uninitialized Constant: CSV</code>.</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span></code></pre></div>
 
@@ -121,7 +121,7 @@ You can also turn these `CSV::Row` objects into actual hashes:
 The `.read` method is not the best when you have a gigantic file. Instead, try the `.for_each` method:
 
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
   <span class="nb">p</span> <span class="n">row</span><span class="o">.</span><span class="n">to_h</span>
 <span class="k">end</span></code></pre></div>
 

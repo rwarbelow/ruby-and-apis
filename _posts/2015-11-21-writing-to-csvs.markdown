@@ -14,7 +14,7 @@ CSV.open('new_people.csv', 'w') do |csv|
 end
 {% endhighlight %}
 
-Check out the [I/O Mode Ruby Docs](http://ruby-doc.org/core-2.0.0/IO.html#method-c-new-label-IO+Open+Mode) for more info on modes that can be passed in. 
+Check out the <a href="http://ruby-doc.org/core-2.0.0/IO.html#method-c-new-label-IO+Open+Mode">I/O Mode Ruby Docs</a> for more info on modes that can be passed in. 
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">

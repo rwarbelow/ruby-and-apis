@@ -28,7 +28,7 @@ Bobby,Rose,brosed@baidu.com,District of Columbia
 Timothy,Castillo,tcastilloe@yelp.com,California
 ```
 
-Let's play around in `irb` first to see what we're doing. Since CSV is not part of the Ruby core library, we need to require it:
+Let's play around in `irb` first to see what we're doing. Since CSV is not part of the Ruby core library, we need to require it. If we forget this step, we'll see an error `Uninitialized Constant: CSV`.
 
 {% highlight ruby %}
 require 'csv'
@@ -83,7 +83,7 @@ end
 The `.read` method is not the best when you have a gigantic file. Instead, try the `.for_each` method:
 
 {% highlight ruby %}
-CSV.foreach('people.csv', 'r', headers: true, header_converters: :symbol) do |row|
+CSV.foreach('people.csv', headers: true, header_converters: :symbol) do |row|
   p row.to_h
 end
 {% endhighlight %}
