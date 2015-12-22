@@ -7,7 +7,7 @@ permalink: debugging-tools
 
 In this section, we'll take a look at a few ways to debug Ruby code, including `puts` and a Ruby gem called `pry`.
 
-#### `puts` or `p`
+<h4>`puts` or `p`</h4> 
 
 If you're not sure what a value is in your program at a certain point in tine, you can use `puts` or `p` to show that element. 
 

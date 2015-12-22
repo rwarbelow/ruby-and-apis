@@ -58,7 +58,7 @@ clothing.size
 clothing.length
 {% endhighlight %}
 
-These three methods will return the same value. However, they have different implications for performance. You can read more about that [here](http://batsov.com/articles/2014/02/17/the-elements-of-style-in-ruby-number-13-length-vs-size-vs-count/). 
+These three methods will return the same value. However, they have different implications for performance. You can read more about that <a href="http://batsov.com/articles/2014/02/17/the-elements-of-style-in-ruby-number-13-length-vs-size-vs-count/">here</a>. 
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
