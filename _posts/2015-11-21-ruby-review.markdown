@@ -252,10 +252,10 @@ end
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title orange-text"><b>Try it: </b>Gripe Machine -- Getting User Input</span>
-    <p>Start a new file `gripe_machine.rb`</p> <br>
+    <span class="card-title orange-text"><b>Try it: </b>Gift List -- Getting User Input</span>
+    <p>Start a new file `gift_list.rb`</p> <br>
     <p>
-      Combine some of the skills we're reviewed. Write a simple program allows users to vent. If the user enters a gripe that is longer than 20 characters, print "Wow, sounds like you're having a rough time!". The program should continue prompting the user for input until the keyword "done" is entered. The program should then print "Goodbye!"
+      Combine some of the skills we're reviewed. Write a simple program allows users enter gifts that they want. If the user enters a gift title that is longer than 20 characters, print "Don't be so greedy". The program should continue prompting the user for input until the keyword "done" is entered. The program should then print "Goodbye!"
     </p>
   </div>
 </div>

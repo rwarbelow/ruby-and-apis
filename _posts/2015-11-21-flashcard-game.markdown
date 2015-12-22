@@ -54,6 +54,8 @@ question3,answer3,question3,false
 question1,answer1,answer1,true
 ```
 
+Let's brainstorm some of the objects, behaviors, and attributes that we might want in this program. 
+
 #### Extensions
 
 1. Check whether or not the CSV file exists. If it does not, prompt the user to enter a new filename.

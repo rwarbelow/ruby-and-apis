@@ -5,34 +5,57 @@ date: 2015-11-21 23:59:52
 permalink: scripting-find-and-replace
 ---
 
-In this section, we'll learn about two string methods `#sub` and `#gsub`, figure out how to take in command-line arguments to use in a Ruby program, and create regex patterns to find parts of strings. We'll use these tools to create a command-line program that can read in a file, find and replace content, and write the output back into that file.  
-
-#### String method `#sub`
-
-* [gsub](http://ruby-doc.org/core-2.2.4/String.html#method-i-gsub)
+In this section, we'll learn about the string method `#gsub` and figure out how to take in command-line arguments to use in a Ruby program. We'll use these tools to create a command-line program that can read in a file, find and replace content, and write the output back into that file.  
 
 #### String method `#gsub`
 
-* [gsub](http://ruby-doc.org/core-2.2.4/String.html#method-i-gsub)
+[#gsub](http://ruby-doc.org/core-2.2.4/String.html#method-i-gsub) is a method for global substitution. It accepts two arguments: one for the pattern or word to find, and one for the replacement:
 
-#### Taking in command line arguments with `ARGV`
+{% highlight ruby %}
+text = "Here is a piece of text."
+new_text = text.gsub("text", "candy")
+{% endhighlight %}
 
-* ARGV
-* regex
-* [rubular](http://rubular.com/)
+This example will create a new string and leave `text` intact. If you want to permanently modify the existing string, use `gsub!` instead:
+
+{% highlight ruby %}
+text = "Here is a piece of text."
+text.gsub!("text", "candy")
+{% endhighlight %}
+
+<h4>Command line arguments with `ARGV`</h4>
+
+The variable `ARGV` represents any arguments from the command line. If I were to type:
+
+{% highlight css %}
+$ ruby my_program.rb panda batman
+{% endhighlight %}
+
+Then I could access "panda" and "batman" in `my_program.rb` like this:
+
+{% highlight ruby %}
+first_word  = ARGV[0]
+second_word = ARGV[1]
+
+# OR
+
+first_word, second_word = ARGV
+{% endhighlight %}
+
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title">Challenge: Scripting Find and Replace</span>
+    <span class="card-title orange-text"><b>Try it: </b>Scripting Find and Replace</span>
     <p>
       Build a Ruby program that is executed with the following command:
       {% highlight css %}
       $ ruby find-and-replace.rb cheese-ipsum.txt brie cheddar
       {% endhighlight %}
-      `find-and-replace.rb` is the filename of your program. `cheese-ipsum.txt` is the file containing
-      the existing text. "brie" is the word that you're looking for, and "cheddar" is the word
-      you want to put in place of "brie". 
-    </p>
+      <li>`find-and-replace.rb` is the filename of your program</li> 
+      <li>`cheese-ipsum.txt` is the file containing the existing text</li> 
+      <li>"brie" is the word that you're looking for, and "cheddar" is the word you want to put in place of "brie".</li>
+    </p><br>
+    <p>Print the revised draft to the screen and ask the user if they want to write over the existing file. If so, save the new text to the `cheese-ipsum.txt` file.</p> <br>
     <p>
       Here's some text you can use for the `cheese-ipsum.txt` file:
 
@@ -73,3 +96,7 @@ end
 {% endhighlight %}
   </div>
 </div>
+
+Curious about why you need to use `$stdin.gets.chomp` instead of `gets.chomp`? Check out this [StackOverflow answer](http://stackoverflow.com/questions/10523536/whats-the-difference-between-gets-chomp-vs-stdin-gets-chomp).
+
+If you're interested in using Regex patterns, check out [rubular](http://rubular.com/) which is a playground for Ruby Regular Expressions. 

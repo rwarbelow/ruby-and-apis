@@ -62,14 +62,14 @@ These three methods will return the same value. However, they have different imp
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title orange-text"><b>Try it: </b>Gripe Machine, v.2.0</span>
-    <p>Open your file `gripe_machine.rb`</p> <br>
+    <span class="card-title orange-text"><b>Try it: </b>Gift List, v.2.0</span>
+    <p>Open your file `gift_list.rb`</p> <br>
     <p>
-      Modify your program to save each user input in a `gripes` array. After each input from the user, print out how many total compaints have been entered. 
+      Modify your program to save each user input in a `gifts` array. After each input from the user, print out how many total gifts have been entered. 
     </p>
     <br>
     <p>
-      If the user enters the word "delete" instead of a gripe, print out all of the gripes. Then prompt the user to enter the position number they wish to delete. After they enter a number, delete that gripe and continue prompting for a new gripe.
+      If the user enters the word "delete" instead of a gift, print out all of the gifts that have been entered so far. Then prompt the user to enter the position number they wish to delete. After they enter a number, delete that gift and continue prompting for a new gift.
     </p>
   </div>
 </div>

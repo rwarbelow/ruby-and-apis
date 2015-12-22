@@ -56,9 +56,12 @@ What happened in the above example? How is it different from the previous exampl
 
 <div class="card blue-grey darken-1">
   <div class="card-content white-text">
-    <span class="card-title orange-text"><b>Try it: </b>Writing gripes to a file</span>
+    <span class="card-title orange-text"><b>Try it: </b>Writing gifts to a file</span>
     <p>
-      Open your gripes program. When the user wants to quit, save the gripes to a file. The user should be able to run the program multiple times without overwriting existing gripes. 
+      Open your gift list program. When the user wants to quit, save the gifts to a file. The user should be able to run the program multiple times without overwriting existing gifts. 
+    </p> <br>
+    <p>
+      BONUS: Sort the gifts from the most asked for gift to the least asked for gift. Use the `#sort_by` method on your gifts hash. 
     </p>
   </div>
 </div>
