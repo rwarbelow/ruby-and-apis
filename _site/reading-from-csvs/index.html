@@ -79,11 +79,11 @@ Timothy,Castillo,tcastilloe@yelp.com,California
 
 <p>Then we can create a Ruby handler for the CSV file:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span></code></pre></div>
 
 <p>This returns to us an array of arrays, but if you look at the first inner array, it&#39;s just the headers. </p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span></code></pre></div>
 
 <p>This returns to us a <code>CSV::Table</code> object. We can iterate through this CSV object:</p>
 
@@ -103,7 +103,7 @@ Timothy,Castillo,tcastilloe@yelp.com,California
 If you would prefer to access the data via symbols instead of strings, we can do that:
 
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span>
 <span class="n">people</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">person</span><span class="o">|</span>
   <span class="nb">p</span> <span class="n">person</span><span class="o">[</span><span class="ss">:first_name</span><span class="o">]</span>
 <span class="k">end</span></code></pre></div>
@@ -112,7 +112,7 @@ If you would prefer to access the data via symbols instead of strings, we can do
 You can also turn these `CSV::Row` objects into actual hashes:
 
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">people</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span>
 <span class="n">people</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">person</span><span class="o">|</span>
   <span class="nb">p</span> <span class="n">person</span><span class="o">.</span><span class="n">to_h</span>
 <span class="k">end</span></code></pre></div>
@@ -121,7 +121,7 @@ You can also turn these `CSV::Row` objects into actual hashes:
 The `.read` method is not the best when you have a gigantic file. Instead, try the `.for_each` method:
 
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s1">&#39;people.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">header_converters</span><span class="p">:</span> <span class="ss">:symbol</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
   <span class="nb">p</span> <span class="n">row</span><span class="o">.</span><span class="n">to_h</span>
 <span class="k">end</span></code></pre></div>
 
@@ -152,9 +152,9 @@ Marie,Gutierrez,12,81
 Andrew,Mills,10,83
 Kathy,Hudson,12,77
 Walter,Elliott,9,55
-Wanda,Harvey,11,57
+Wanda,Harvey,11,97
 Ryan,Ruiz,10,65
-Lori,Taylor,11,75
+Lori,Taylor,11,99
 Jason,Cook,12,84
 Shirley,Myers,9,68
 Christine,Andrews,12,70

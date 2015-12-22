@@ -37,13 +37,13 @@ require 'csv'
 Then we can create a Ruby handler for the CSV file:
 
 {% highlight ruby %}
-people = CSV.read('people.csv')
+people = CSV.read('people.csv', 'r')
 {% endhighlight %}
 
 This returns to us an array of arrays, but if you look at the first inner array, it's just the headers. 
 
 {% highlight ruby %}
-people = CSV.read('people.csv', headers: true)
+people = CSV.read('people.csv', 'r', headers: true)
 {% endhighlight %}
 
 This returns to us a `CSV::Table` object. We can iterate through this CSV object:
@@ -65,7 +65,7 @@ end
 If you would prefer to access the data via symbols instead of strings, we can do that:
 
 {% highlight ruby %}
-people = CSV.read('people.csv', headers: true, header_converters: :symbol)
+people = CSV.read('people.csv', 'r', headers: true, header_converters: :symbol)
 people.each do |person|
   p person[:first_name]
 end
@@ -74,7 +74,7 @@ end
 You can also turn these `CSV::Row` objects into actual hashes:
 
 {% highlight ruby %}
-people = CSV.read('people.csv', headers: true, header_converters: :symbol)
+people = CSV.read('people.csv', 'r', headers: true, header_converters: :symbol)
 people.each do |person|
   p person.to_h
 end
@@ -83,7 +83,7 @@ end
 The `.read` method is not the best when you have a gigantic file. Instead, try the `.for_each` method:
 
 {% highlight ruby %}
-CSV.foreach('people.csv', headers: true, header_converters: :symbol) do |row|
+CSV.foreach('people.csv', 'r', headers: true, header_converters: :symbol) do |row|
   p row.to_h
 end
 {% endhighlight %}
@@ -116,9 +116,9 @@ Marie,Gutierrez,12,81
 Andrew,Mills,10,83
 Kathy,Hudson,12,77
 Walter,Elliott,9,55
-Wanda,Harvey,11,57
+Wanda,Harvey,11,97
 Ryan,Ruiz,10,65
-Lori,Taylor,11,75
+Lori,Taylor,11,99
 Jason,Cook,12,84
 Shirley,Myers,9,68
 Christine,Andrews,12,70
