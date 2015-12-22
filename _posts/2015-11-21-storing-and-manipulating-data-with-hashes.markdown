@@ -78,3 +78,35 @@ clothing.length
     </p>
   </div>
 </div>
+
+Here's a possible implementation:
+
+{% highlight ruby %}
+input = ""
+gifts = Hash.new(0)
+
+while input != "done"
+  if input == "delete"
+    puts "Here are your current gifts: #{gifts}."
+    puts "Which gift would you like to delete?"
+    gift = gets.chomp
+    gifts[gift] -= 1
+    # if gifts[gift] == 1
+    #   gifts.delete(gift)
+    # else
+    #   gifts[gift] -= 1
+    # end
+  else
+    gifts[input] += 1 unless input == ""
+    puts "Don't be so greedy" if input.length > 20
+  end
+  puts "You have #{gifts.length} gifts in your list."
+  print "Enter a gift: "
+  input = gets.chomp
+end
+
+puts gifts
+
+puts "Goodbye!"
+
+{% endhighlight %}
