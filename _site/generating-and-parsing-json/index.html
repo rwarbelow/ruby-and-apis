@@ -53,23 +53,55 @@
 
 
 <h2>Generating and Parsing JSON</h2>
+<p>JSON stands for JavaScript Object Notation. It is a machine- and human-readable format for data organization. </p>
+
 <p>In this section, we&#39;ll use the <a href="http://ruby-doc.org/stdlib-2.2.4/libdoc/json/rdoc/JSON.html">JSON module</a> of the Ruby standard library in order to generate JSON from Ruby objects and parse JSON strings into Ruby objects. </p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="ss">:symbolize_names</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span></code></pre></div>
+<h4>Generating JSON from Ruby Objects</h4>
 
-<h1>skdhf</h1>
+<p>To generate JSON, we&#39;ll need to require the JSON module:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;json&#39;</span></code></pre></div>
 
-<h4>fldksh</h4>
+<p>Anything can be turned into JSON. However, it&#39;s most powerfully used when Ruby hashes are passed:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
-<span class="k">end</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span> <span class="ss">fruit</span><span class="p">:</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="ss">vegetable</span><span class="p">:</span> <span class="s2">&quot;carrot&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">to_json</span>
+<span class="c1">#=&gt; &quot;{\&quot;fruit\&quot;:\&quot;apple\&quot;,\&quot;vegetable\&quot;:\&quot;carrot\&quot;}&quot;</span></code></pre></div>
 
-<p><code>https://www.coursehero.com/api/flashcards/sets/600582/?api_key=INSERT-KEY-HERE</code></p>
+
+This might look funny. Those slashes are actually escape characters. They prevent the quotes from being closed prematurely. 
+
+We can also turn nested hashes into JSON:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span> <span class="ss">foods</span><span class="p">:</span> <span class="p">{</span> <span class="ss">fruit</span><span class="p">:</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="ss">vegetable</span><span class="p">:</span> <span class="s2">&quot;carrot&quot;</span> <span class="p">},</span> <span class="ss">furniture</span><span class="p">:</span> <span class="p">{</span> <span class="ss">livingroom</span><span class="p">:</span> <span class="s2">&quot;couch&quot;</span><span class="p">,</span> <span class="ss">bedroom</span><span class="p">:</span> <span class="s2">&quot;dresser&quot;</span> <span class="p">}</span> <span class="p">}</span><span class="o">.</span><span class="n">to_json</span>
+<span class="c1">#=&gt; &quot;{\&quot;foods\&quot;:{\&quot;fruit\&quot;:\&quot;apple\&quot;,\&quot;vegetable\&quot;:\&quot;carrot\&quot;},\&quot;clothing\&quot;:{\&quot;outerwear\&quot;:\&quot;coat\&quot;}}&quot;</span></code></pre></div>
+
+
+<h4>Parsing JSON into Ruby Objects</h4>
+
+To parse JSON, we use `JSON.parse(data)`:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">fruit</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">apple</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">vegetable</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">carrot</span><span class="se">\&quot;</span><span class="s2">}&quot;</span>
+<span class="n">parsed_data</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="ss">:symbolize_names</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
+<span class="c1">#=&gt; {:fruit=&gt;&quot;apple&quot;, :vegetable=&gt;&quot;carrot&quot;}</span></code></pre></div>
+
+
+Notice that `:symbolize_names => true` turned the keys into symbols (which is what we want). 
+
+We can now access the data as we would any regular hash. 
+
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title orange-text"><b>Try it: </b>Reading JSON from a File</span>
+    <p>
+      The data below is the result of an API call to `https://www.coursehero.com/api/flashcards/sets/600582/?api_key=INSERT-KEY-HERE`. 
+    </p> <br>
+    <p>You'll combine a few skills here. First, save the JSON below into a file called `flashcards.json`. Then, create a `Flashcard` ruby object. You'll notice that the only data values that are relevant are `term` and `definition`, so your Ruby object only needs to have those attributes. Read in the JSON data, then output an array of five `Flashcard` objects. </p>
+  </div>
+</div>
 
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&quot;flashcards&quot;</span><span class="p">:</span> <span class="p">[</span>
   <span class="p">{</span>
@@ -123,6 +155,23 @@
     <span class="nt">&quot;hint_image&quot;</span><span class="p">:</span> <span class="kc">null</span>
   <span class="p">}</span>
 <span class="p">]}</span></code></pre></div>
+
+<h4>Turing Custom Objects into JSON</h4>
+
+<p>Normally if you call <code>#to_json</code> on an object you&#39;ve defined, you&#39;ll get something like this, which isn&#39;t helpful:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+<span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span><span class="p">({</span><span class="ss">:first_name</span><span class="o">=&gt;</span><span class="s2">&quot;Nancy&quot;</span><span class="p">,</span> <span class="ss">:last_name</span><span class="o">=&gt;</span><span class="s2">&quot;Gonzalez&quot;</span><span class="p">,</span> <span class="ss">:email</span><span class="o">=&gt;</span><span class="s2">&quot;ngonzalez0@mtv.com&quot;</span><span class="p">,</span> <span class="ss">:state</span><span class="o">=&gt;</span><span class="s2">&quot;Florida&quot;</span><span class="p">})</span>
+<span class="n">person</span><span class="o">.</span><span class="n">to_json</span>
+<span class="c1">#=&gt; &quot;\&quot;#&lt;Person:0x007f95cc218d38&gt;\&quot;&quot;</span></code></pre></div>
+
+<p>However, we can require part of the <code>ActiveSupport</code> library (which is normally used in Rails), and get a much cleaner output for our JSON data:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;active_support/all&#39;</span>
+<span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span><span class="p">({</span><span class="ss">:first_name</span><span class="o">=&gt;</span><span class="s2">&quot;Nancy&quot;</span><span class="p">,</span> <span class="ss">:last_name</span><span class="o">=&gt;</span><span class="s2">&quot;Gonzalez&quot;</span><span class="p">,</span> <span class="ss">:email</span><span class="o">=&gt;</span><span class="s2">&quot;ngonzalez0@mtv.com&quot;</span><span class="p">,</span> <span class="ss">:state</span><span class="o">=&gt;</span><span class="s2">&quot;Florida&quot;</span><span class="p">})</span>
+<span class="n">person</span><span class="o">.</span><span class="n">to_json</span>
+<span class="c1">#=&gt; &quot;{\&quot;first_name\&quot;:\&quot;Nancy\&quot;,\&quot;last_name\&quot;:\&quot;Gonzalez\&quot;,\&quot;email\&quot;:\&quot;ngonzalez0@mtv.com\&quot;,\&quot;state\&quot;:\&quot;Florida\&quot;}&quot;</span></code></pre></div>
 
 
        </div>
