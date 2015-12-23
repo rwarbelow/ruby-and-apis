@@ -61,7 +61,7 @@ puts contents
 
 
 {% highlight ruby %}
-File.readlines('example.txt', 'r').each do |line|
+File.readlines('example.txt').each do |line|
   puts line
 end
 {% endhighlight %}
