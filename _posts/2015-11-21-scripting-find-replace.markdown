@@ -49,7 +49,7 @@ first_word, second_word = ARGV
     <p>
       Build a Ruby program that is executed with the following command:
       {% highlight css %}
-      $ ruby find-and-replace.rb cheese-ipsum.txt brie cheddar
+      $ ruby find_and_replace.rb cheese-ipsum.txt brie cheddar
       {% endhighlight %}
       <li>`find-and-replace.rb` is the filename of your program</li> 
       <li>`cheese-ipsum.txt` is the file containing the existing text</li> 

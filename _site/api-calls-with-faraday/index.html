@@ -64,61 +64,48 @@
       <div class="col s9">
 
 
-<h2>Flashcard Game</h2>
-<p>Create a game whose interface works like this:</p>
+<h2>Making API Calls with Faraday</h2>
+<p>using faraday to send requests 
+creating Ruby objects to parse nested JSON data
+writing JSON API data to CSVs</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">require_relative</span> <span class="s1">&#39;card_generator&#39;</span>
-<span class="n">require_relative</span> <span class="s1">&#39;round&#39;</span>
+<p><a href="https://github.com/lostisland/faraday">Faraday</a> is a Ruby Gem that can be used to make HTTP requests. It provides a simpler interface over the built-in Ruby HTTP client. </p>
 
-<span class="nb">print</span> <span class="s2">&quot;Welcome! Enter the name of the CSV file for your deck: &quot;</span>
+<p>To install a gem in Ruby, we type <code>gem install faraday</code> on the command line. This will put the source code on our machine.</p>
 
-<span class="n">file</span> <span class="o">=</span> <span class="nb">gets</span><span class="o">.</span><span class="n">chomp</span>
-<span class="c1"># This file should look something like &quot;example-cards.csv&quot;.</span>
+<p>Then in irb:</p>
 
-<span class="n">cards</span> <span class="o">=</span> <span class="no">CardGenerator</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">create_cards</span>
-<span class="c1"># This method should return an array of shuffled card objects</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;faraday&#39;</span>
+<span class="no">Faraday</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.example.com&#39;</span><span class="p">)</span></code></pre></div>
 
-<span class="n">round</span> <span class="o">=</span> <span class="no">Round</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span>
-<span class="n">round</span><span class="o">.</span><span class="n">start</span>
-<span class="c1"># This should begin the game. The game will iterate through all cards </span>
-<span class="c1"># in the round and ask the user for an answer. The answers should be</span>
-<span class="c1"># stored by the round.</span>
 
-<span class="c1"># At the end of the game, the round should tell the user how many</span>
-<span class="c1"># questions were answered correctly. Then, the program should</span>
-<span class="c1"># save the results to a CSV where the headers are </span>
-<span class="c1"># question, answer, user_response, result (correct or incorrect)</span>
+Faraday is helpful when fetching API data, too. Notice that I've appended `APPID=442eba5b3e3a3ae8ead5698479bcdaa8` to the end of the call as a query string. This is a key that is given when registering with <a href="http://openweathermap.org/">OpenWeatherMap</a>
 
-<span class="nb">puts</span> <span class="s2">&quot;Your results have been saved to &#39;results.csv&#39;.&quot;</span>
-<span class="nb">puts</span> <span class="s2">&quot;Thank you for playing!&quot;</span></code></pre></div>
 
-<p>Let&#39;s brainstorm some of the objects, behaviors, and attributes that we might want in this program. </p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;faraday&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Faraday</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://api.openweathermap.org/data/2.5/forecast?q=Chicago,us&amp;units=imperial&amp;APPID=442eba5b3e3a3ae8ead5698479bcdaa8&#39;</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span></code></pre></div>
 
-<p>Here is some CSV data you can use for the card file:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">question,answer
-question1,answer1
-question2,answer2
-question3,answer3
-question4,answer4
-</code></pre></div>
-<p>An example of the results.csv file might look like this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">question,answer,user_response,result
-question2,answer2,answer2,correct
-question4,answer4,answer4,correct
-question3,answer3,question3,incorrect
-question1,answer1,answer1,correct
-</code></pre></div>
-<h4>Extensions</h4>
 
-<ol>
-<li>Check whether or not the CSV file exists. If it does not, prompt the user to enter a new filename.</li>
-<li>Instead of prompting the user for a filename, accept a filename as a command line argument (ie <code>$ ruby flashcards.rb card-data.csv</code>)</li>
-<li>Output your results into JSON format. </li>
-<li>Allow both CSVs and text files containing JSON to be used for card data.</li>
-<li>Use <a href="http://ruby-doc.org/core-2.2.3/Time.html#method-c-now">Time.now</a> to generate a dynamic results file name.</li>
-<li>Put incorrectly answered cards back into the iteration to be asked again.</li>
-<li>Build in hint functionality. If a user enters &quot;hint&quot; when it&#39;s time to answer, the game should display a hint. In order to make this functional, you&#39;ll need to modify the CSV file you take in. </li>
-</ol>
+You can find the format of the JSON response on the <a href="http://openweathermap.org/forecast5">OpenWeatherMap Forecast Documentation</a>.
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title orange-text"><b>Try it: </b>Making API Calls and Parsing JSON</span>
+    <p>
+      Write a program `weather_forecast.rb` that accept a command-line argument for a city and returns a list like this:
+    </p> <br>
+    <p>
+2016-01-08 06:00:00 -- 34.7 degrees <br>
+2016-01-08 09:00:00 -- 32.1 degrees <br>
+...etc
+    </p> <br>
+      <p>
+      Once you have the parsed response, you'll want to iterate: parsed_response.list.each do |data|...
+    </p>
+
+  </div>
+</div>
 
 
        </div>

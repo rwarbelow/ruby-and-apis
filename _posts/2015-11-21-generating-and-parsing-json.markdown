@@ -20,7 +20,11 @@ require 'json'
 Anything can be turned into JSON. However, it's most powerfully used when Ruby hashes are passed:
 
 {% highlight ruby %}
-{ fruit: "apple", vegetable: "carrot" }.to_json
+{ 
+  fruit: "apple", 
+  vegetable: "carrot" 
+}.to_json
+
 #=> "{\"fruit\":\"apple\",\"vegetable\":\"carrot\"}"
 {% endhighlight %}
 
@@ -29,7 +33,17 @@ This might look funny. Those slashes are actually escape characters. They preven
 We can also turn nested hashes into JSON:
 
 {% highlight ruby %}
-{ foods: { fruit: "apple", vegetable: "carrot" }, furniture: { livingroom: "couch", bedroom: "dresser" } }.to_json
+{ 
+  foods: { 
+    fruit: "apple", 
+    vegetable: "carrot" 
+  }, 
+  furniture: { 
+    livingroom: "couch", 
+    bedroom: "dresser" 
+  } 
+}.to_json
+
 #=> "{\"foods\":{\"fruit\":\"apple\",\"vegetable\":\"carrot\"},\"clothing\":{\"outerwear\":\"coat\"}}" 
 {% endhighlight %}
 
@@ -54,7 +68,7 @@ We can now access the data as we would any regular hash.
     <p>
       The data below is the result of an API call to `https://www.coursehero.com/api/flashcards/sets/600582/?api_key=INSERT-KEY-HERE`. 
     </p> <br>
-    <p>You'll combine a few skills here. First, save the JSON below into a file called `flashcards.json`. Then, create a `Flashcard` ruby object. You'll notice that the only data values that are relevant are `term` and `definition`, so your Ruby object only needs to have those attributes. Read in the JSON data, then output an array of five `Flashcard` objects. </p>
+    <p>You'll combine a few skills here. First, save the JSON below into a file called `flashcards.json`. Then, create a `Flashcard` ruby object. You'll notice that the only data values that are relevant are `fcid`, `term`, and `definition`, so your Ruby object only needs to have those attributes. Read in the JSON data, then output an array of five `Flashcard` objects. </p>
   </div>
 </div>
 

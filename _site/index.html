@@ -23,44 +23,62 @@
 
 <ol>
 
-  <li><h5><a href="/ruby-review">Ruby Review</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/ruby-review">Ruby Review</a></h5></li>
   <p>In this section, we&#39;ll review Ruby basics, including naming conventions, data types, objects and methods, iteration, conditionals, input/output, and variable...</p>
 
-  <li><h5><a href="/debugging-tools">Debugging Tools</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/debugging-tools">Debugging Tools</a></h5></li>
   <p>In this section, we&#39;ll take a look at a few ways to debug Ruby code, including puts and a Ruby...</p>
 
-  <li><h5><a href="/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></h5></li>
   <p>In this section, we&#39;ll store and access data in arrays. Think of arrays as boxes of data. You might want...</p>
 
-  <li><h5><a href="/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></h5></li>
   <p>In this section, we&#39;ll store and access data in hashes. Hashes are best described as dictionaries or key-value pairs. You...</p>
 
-  <li><h5><a href="/enumerable-methods">Enumerable Methods</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/enumerable-methods">Enumerable Methods</a></h5></li>
   <p>The Enumerable module provides methods for collection classes like Array and Hash. The enumerable methods are built on top of...</p>
 
-  <li><h5><a href="/reading-from-files">Reading from Files</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/reading-from-files">Reading from Files</a></h5></li>
   <p>In this section, we&#39;ll learn how to read in text files using the File class in Ruby. Read more about...</p>
 
-  <li><h5><a href="/writing-to-files">Writing to Files</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/writing-to-files">Writing to Files</a></h5></li>
   <p>In this section, we&#39;ll use the File class in order to write to new files, append to existing files, and...</p>
 
-  <li><h5><a href="/scripting-find-and-replace">Scripting Find and Replace</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/scripting-find-and-replace">Scripting Find and Replace</a></h5></li>
   <p>In this section, we&#39;ll learn about the string method #gsub and figure out how to take in command-line arguments to...</p>
 
-  <li><h5><a href="/reading-from-csvs">Reading from CSVs</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/reading-from-csvs">Reading from CSVs</a></h5></li>
   <p>In this section, we&#39;ll use the CSV class from Ruby&#39;s standard library in order to read in comma-separated values of...</p>
 
-  <li><h5><a href="/writing-to-csvs">Writing to CSVs</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/writing-to-csvs">Writing to CSVs</a></h5></li>
   <p>In this section, we&#39;ll write to a CSV file. CSV.open(&#39;new_people.csv&#39;, &#39;w&#39;) do |csv| csv &lt;&lt; [&quot;first_name&quot;, &quot;last_name&quot;] csv &lt;&lt; [&quot;Rachel&quot;,...</p>
 
-  <li><h5><a href="/creating-classes">Creating Classes</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/creating-classes">Creating Classes</a></h5></li>
   <p>What is a Class? A class is what is used to define an object that has behavior and attributes. We&#39;ve...</p>
 
-  <li><h5><a href="/generating-and-parsing-json">Generating and Parsing JSON</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/generating-and-parsing-json">Generating and Parsing JSON</a></h5></li>
   <p>JSON stands for JavaScript Object Notation. It is a machine- and human-readable format for data organization. In this section, we&#39;ll...</p>
 
-  <li><h5><a href="/flashcard-game">Flashcard Game</a></h5></li>
+  <li><h5><a href="/ruby-and-apis/flashcard-game">Flashcard Game</a></h5></li>
   <p>Create a game whose interface works like this: require_relative &#39;card_generator&#39; require_relative &#39;round&#39; print &quot;Welcome! Enter the name of the CSV...</p>
+
+  <li><h5><a href="/ruby-and-apis/option-parser">Option Parser</a></h5></li>
+  <p>Ruby&#39;s OptionParser class is an alternative to accessing command line arguments using ARGV. Unlike with ARGV, the order of command...</p>
+
+  <li><h5><a href="/ruby-and-apis/configuration-with-yaml">Configuration with YAML Files</a></h5></li>
+  <p>YAML stands for &quot;YAML Ain&#39;t Markup Language&quot; and is a human- and machine-readable data format. Let&#39;s try a few experiments:...</p>
+
+  <li><h5><a href="/ruby-and-apis/api-calls-with-faraday">Making API Calls with Faraday</a></h5></li>
+  <p>using faraday to send requests creating Ruby objects to parse nested JSON data writing JSON API data to CSVs Faraday...</p>
+
+  <li><h5><a href="/ruby-and-apis/openstruct">OpenStruct to create Ruby objects on the fly</a></h5></li>
+  <p>OpenStruct is part of the Ruby standard library. It is used to create objects on the fly, and it can...</p>
+
+  <li><h5><a href="/ruby-and-apis/openweathermap-api">Interacting with the OpenWeatherMap API through Ruby</a></h5></li>
+  <p>config.yml: API_KEY: 442eba5b3e3a3ae8ead5698479bcdaa8 weather_forecast.rb: require_relative &#39;weather&#39; require_relative &#39;forecast&#39; require &#39;optparse&#39; options = {} parser = OptionParser.new do|opts| opts.on(&#39;-c&#39;, &#39;--city city&#39;,...</p>
+
+  <li><h5><a href="/ruby-and-apis/api-project">API Project</a></h5></li>
+  <p>Nutrition Use the Nutritionix API to create an interface where a user enters the following command: $ ruby nutrition.rb -f...</p>
 
 </ol>
 

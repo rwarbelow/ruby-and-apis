@@ -34,6 +34,8 @@ puts "Your results have been saved to 'results.csv'."
 puts "Thank you for playing!"
 {% endhighlight %}
 
+Let's brainstorm some of the objects, behaviors, and attributes that we might want in this program. 
+
 Here is some CSV data you can use for the card file:
 
 ```
@@ -48,13 +50,11 @@ An example of the results.csv file might look like this:
 
 ```
 question,answer,user_response,result
-question2,answer2,answer2,true
-question4,answer4,answer4,true
-question3,answer3,question3,false
-question1,answer1,answer1,true
+question2,answer2,answer2,correct
+question4,answer4,answer4,correct
+question3,answer3,question3,incorrect
+question1,answer1,answer1,correct
 ```
-
-Let's brainstorm some of the objects, behaviors, and attributes that we might want in this program. 
 
 #### Extensions
 
