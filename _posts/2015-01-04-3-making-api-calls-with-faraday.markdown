@@ -5,10 +5,6 @@ date: 2015-01-04 23:59:57
 permalink: api-calls-with-faraday
 ---
 
-using faraday to send requests 
-creating Ruby objects to parse nested JSON data
-writing JSON API data to CSVs
-
 <a href="https://github.com/lostisland/faraday">Faraday</a> is a Ruby Gem that can be used to make HTTP requests. It provides a simpler interface over the built-in Ruby HTTP client. 
 
 To install a gem in Ruby, we type `gem install faraday` on the command line. This will put the source code on our machine.
