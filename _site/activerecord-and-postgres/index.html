@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/ruby-and-apis/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/ruby-and-apis">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/flashcard-game">Flashcard Game</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/option-parser">Option Parser</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/configuration-with-yaml">Configuration with YAML Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/api-calls-with-faraday">Making API Calls with Faraday</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/openstruct">OpenStruct to create Ruby objects on the fly</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/openweathermap-api">Interacting with the OpenWeatherMap API through Ruby</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/api-project">API Project</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/intro-to-sinatra">Intro to Sinatra</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/building-routes-and-views-in-sinatra">Building Routes and Views in Sinatra</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/activerecord-and-postgres">ActiveRecord and Databases</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/mvc-structure">MVC Structure</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/deploying-to-heroku">Deploying to Heroku</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/building-crud-functionality">Building CRUD Functionality</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>ActiveRecord and Databases</h2>
+<p><img src="http://wiki.expertiza.ncsu.edu/images/2/2c/ORM_Flowchart.jpg" alt="orm"></p>
+
+<p>(Diagram courtesy of expertiza.ncsu.edu)</p>
+
+<p>An Object Relational Mapper &quot;translates&quot; between a programming language (Ruby, in our case) and a database.</p>
+
+<p>Let&#39;s try out an example. Clone down the <a href="https://github.com/rwarbelow/active_record_practice">Active Record Practice</a> repo. </p>
+
+<p>First, we&#39;ll look at the setup:</p>
+
+<ul>
+  <li>Gemfile</li>
+  <li>Rakefile</li>
+  <li>config/database.yml</li>
+  <li>db/migrate</li>
+</ul>
+
+<p>Let&#39;s start by creating a database:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rake db:create
+</code></pre></div>
+<p>This will look at our <code>config/database.yml</code> file and create a database with that name. </p>
+
+<h4>Migrations</h4>
+
+<p>You can access the guides for ActiveRecord <a href="http://guides.rubyonrails.org/v3.2.8/migrations.html">here</a>. </p>
+
+<p>A migration is a file that can be used to change the structure of your database. We start with an empty database, and we&#39;ll need to add a table for whatever we want to store. Later on, we might want to add another table, or remove a column, or change a column type. </p>
+
+<p>Instead of writing SQL directly in order to change the database structure, we can store these changes in migration files which will allow us to share these changes easily with anyone else on our team. </p>
+
+<p>Since we&#39;ve already created a database, we can go ahead and make a migration that we&#39;ll use to modify the structure of our empty database. In this case, we&#39;re modifying the structure by creating a table. <em>Table names are always plural.</em></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rake db:create_migration NAME=create_people
+</code></pre></div>
+<p>This will generate a file inside of <code>db/migrate</code> with a timestamp and the name <code>add_people</code>. Go ahead and open that file. </p>
+
+<p>Inside of the change method, we&#39;ll specify what we want to change about the database:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreatePeople</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:people</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:firstname</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:lastname</span>
+
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+
+Now that we have the code, we'll run it so that it actually creates the table. We do this with the following command:
+<div>
+
+
+```
+$ rake db:migrate
+```
+
+</div>
+
+<p>This created a file called <code>schema.rb</code>. Let&#39;s look at it:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lots of comments</span>
+<span class="c1"># and more comments</span>
+
+<span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Schema</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="ss">version</span><span class="p">:</span> <span class="mi">20160218215147</span><span class="p">)</span> <span class="k">do</span>
+
+  <span class="n">create_table</span> <span class="s2">&quot;people&quot;</span><span class="p">,</span> <span class="ss">force</span><span class="p">:</span> <span class="ss">:cascade</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="s2">&quot;firstname&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="s2">&quot;lastname&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="s2">&quot;created_at&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="s2">&quot;updated_at&quot;</span>
+  <span class="k">end</span>
+
+<span class="k">end</span></code></pre></div>
+
+
+The schema is a file that we will not modify by hand. Instead, it acts as a snapshot so that we can easily see what the structure of our database looks like at any given time. 
+
+So that takes care of the database level. Now we need to create Ruby objects that can communicate with the database.
+
+#### Models
+
+Normally, each of our models would live in a separate file. Since this is just a playground, we'll go ahead and define the models inside of the `playground.rb` file. *Model names are always singular.*
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="k">end</span></code></pre></div>
+
+
+That's it! By inheriting from ActiveRecord, our Person class will automatically inherit initialize method, in addition to some common methods that we'll use to interact with the database. If we run the file, we'll hit the `pry` and then we'll have an interactive place to play around with ActiveRecord:
+
+```
+$ ruby playground.rb
+```
+
+Once in the pry session:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">rachel</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">firstname</span><span class="p">:</span> <span class="s2">&quot;rachel&quot;</span><span class="p">,</span> <span class="ss">lastname</span><span class="p">:</span> <span class="s2">&quot;warbelow&quot;</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;Person:0x007fbecb2cb938 id: 1, firstname: &quot;rachel&quot;, lastname: &quot;warbelow&quot;, created_at: 2016-02-01 22:24:54 UTC, updated_at: 2016-02-01 22:24:54 UTC&gt;</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span>
+<span class="c1"># =&gt; [#&lt;Person:0x007fbecb0320f0 id: 1, firstname: &quot;rachel&quot;, lastname: &quot;warbelow&quot;, created_at: 2016-02-01 22:24:54 UTC, updated_at: 2016-02-01 22:24:54 UTC&gt;]</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Person</span><span class="o">.</span><span class="n">count</span>
+<span class="c1"># =&gt; 1</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">bob</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">firstname</span><span class="p">:</span> <span class="s2">&quot;bob&quot;</span><span class="p">,</span> <span class="ss">lastname</span><span class="p">:</span> <span class="s2">&quot;smith&quot;</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;Person:0x007fbeccd9f520 id: 2, firstname: &quot;bob&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:27:45 UTC&gt;</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">mary</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">firstname</span><span class="p">:</span> <span class="s2">&quot;mary&quot;</span><span class="p">,</span> <span class="ss">lastname</span><span class="p">:</span> <span class="s2">&quot;smith&quot;</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;Person:0x007fbecce4a518 id: 3, firstname: &quot;mary&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:27:45 UTC&gt;</span>
+
+<span class="c1"># =&gt; [#&lt;Person:0x007fbeccd451b0 id: 1, firstname: &quot;rachel&quot;, lastname: &quot;warbelow&quot;, created_at: 2016-02-01 22:24:54 UTC, updated_at: 2016-02-01 22:24:54 UTC&gt;,</span>
+ <span class="c1">#&lt;Person:0x007fbeccd45020 id: 2, firstname: &quot;bob&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:27:45 UTC&gt;, #&lt;Person:0x007fbecce4a518 id: 3, firstname: &quot;mary&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:27:45 UTC&gt;]</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Person</span><span class="o">.</span><span class="n">count</span>
+<span class="c1"># =&gt; 3</span></code></pre></div>
+
+
+We can also access methods on the instance of each of our people:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">rachel</span><span class="o">.</span><span class="n">firstname</span>
+<span class="c1"># =&gt; &quot;rachel&quot;</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">bob</span><span class="o">.</span><span class="n">lastname</span>
+<span class="c1"># =&gt; &quot;smith&quot;</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">bob</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">firstname</span><span class="p">:</span> <span class="s2">&quot;bobby&quot;</span><span class="p">)</span>
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">bob</span>
+<span class="c1"># =&gt; #&lt;Person:0x007fbeccd9f520 id: 2, firstname: &quot;bobby&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:33:27 UTC&gt;</span></code></pre></div>
+
+
+In a web app with simple CRUD functionality, here are some helpful methods:
+
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Person</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">last_name</span><span class="p">:</span> <span class="s2">&quot;smith&quot;</span><span class="p">)</span>
+
+<span class="c1"># =&gt; [#&lt;Person:0x007fbeccd45020 id: 2, firstname: &quot;bob&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:27:45 UTC&gt;, #&lt;Person:0x007fbecce4a518 id: 3, firstname: &quot;mary&quot;, lastname: &quot;smith&quot;, created_at: 2016-02-01 22:27:45 UTC, updated_at: 2016-02-01 22:27:45 UTC&gt;]</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">person_one</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;Person:0x007fbeccc561a0 id: 1, firstname: &quot;rachel&quot;, lastname: &quot;warbelow&quot;, created_at: 2016-02-01 22:24:54 UTC, updated_at: 2016-02-01 22:24:54 UTC&gt;</span>
+
+<span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">person_one</span><span class="o">.</span><span class="n">destroy</span>
+<span class="o">=&gt;</span> <span class="c1">#&lt;Person:0x007fbeccc561a0 id: 1, firstname: &quot;rachel&quot;, lastname: &quot;warbelow&quot;, created_at: 2016-02-01 22:24:54 UTC, updated_at: 2016-02-01 22:24:54 UTC&gt;</span></code></pre></div>
+
+
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title orange-text"><b>Try it: </b>Interacting with a Database using ActiveRecord</span>
+    <p>
+      First, type `git reset --hard`. This will erase all of the work we've done so far so that you have a fresh slate.
+    </p>
+    <p>
+      Create a migration for tasks. A task has a title and a description. It also should have a priority level (1-5). 
+    </p>
+    <p>In pry, create some tasks. Make sure that at least two of them have the same priority level.</p>
+    <ul>
+      <li>Find the task with the id of 3.</li>
+      <li>Find a task with a specific title.</li>
+      <li>Find all tasks that have a specific priority level.</li>
+      <li>Count all of your tasks.</li>
+      <li>Return the collection of all of your tasks.</li>
+      <li>Update the description of one of your tasks.</li>
+    </ul>
+  </div>
+</div>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+

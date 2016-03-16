@@ -76,22 +76,61 @@
       <div class="col s9">
 
 
-<h2>API Project</h2>
-<h3>Nutrition</h3>
+<h2>Deploying to Heroku</h2>
+<p>Before we get too much further, let&#39;s make sure our app runs on production using Heroku. </p>
 
-<p>Use the <a href="http://www.nutritionix.com/business/api">Nutritionix API</a> to create an interface where a user enters the following command:</p>
+<p><a href="https://www.heroku.com/about">Heroku</a> is a cloud-based platform for easily deploying apps live. Heroku works with git, so the first thing we&#39;ll do is remove the existing git reference to my repository:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rm -rf .git
+</code></pre></div>
+<p>Then re-initialize the repository:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git init
+</code></pre></div>
+<p>And add and commit:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git add .
+$ git commit -m &#39;initial commit&#39;
+</code></pre></div>
+<p>Next, sign up for a <a href="https://signup.heroku.com">Heroku account</a>. </p>
 
-<p>$ ruby nutrition.rb -f taco</p>
+<p>Let&#39;s install the Heroku toolbelt by following <a href="https://toolbelt.heroku.com/">these instructions</a>. </p>
 
-<p>Where -f represents a food to search for. The user should receive a CSV file containing nutrition information about tacos.</p>
+<p>Once we have the toolbelt, we&#39;ll create a new Heroku remote:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ heroku create
+Creating app... done, stack is cedar-14
+https://limitless-thicket-60175.herokuapp.com/ | https://git.heroku.com/limitless-thicket-60175.git
+</code></pre></div>
+<p>Heroku will give you back the URL where your app lives. By default, this is adjective-noun-number.herokuapp.com. You can customize it in your Heroku dashboard if you&#39;d like. </p>
 
-<h3>Top News Stories</h3>
+<p>We can check that this remote was created by asking git:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git remote -v
+heroku  https://git.heroku.com/limitless-thicket-60175.git (fetch)
+heroku  https://git.heroku.com/limitless-thicket-60175.git (push)
+</code></pre></div>
+<p>Great! Now we can push to Heroku: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git push heroku master
+Counting objects: 25, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (25/25), 3.90 KiB | 0 bytes/s, done.
+Total 25 (delta 0), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote: 
+remote: -----&gt; Ruby app detected
+remote: -----&gt; Compiling Ruby/Rack
+...
+</code></pre></div>
+<p>Next, we&#39;ll migrate the database on our Heroku remote:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ heroku run rake db:migrate
+Running rake db:migrate on limitless-thicket-60175... up, run.8034
+== 20160219213811 CreatePeople: migrating =====================================
+-- create_table(:people)
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /app/db/migrate/20160219213811_create_people.rb:7)
+   -&gt; 0.0087s
+== 20160219213811 CreatePeople: migrated (0.0088s) ============================
+</code></pre></div>
+<p>You can either navigate to the URL where your app lives via your browser, or type <code>heroku open</code>. </p>
 
-<p>Use the <a href="http://developer.nytimes.com/docs/top_stories_api/">NYTimes Top Stories API</a> to create an interface where a user enters the following command:</p>
-
-<p>$ ruby top_stories.rb -s sports</p>
-
-<p>Where -s represents the section. The user should receive a CSV file where the title is today&#39;s date and &quot;top-stories&quot; -- for example: 2016-1-8-top-stories.csv. The CSV should contain the article titles, authors, date published, abstract, and url to the article.  </p>
+<p>Make sure to check <code>/people</code>. You should see a heading <em>All People</em>, but since this is running with our production database, we won&#39;t actually see any people there. </p>
 
 
        </div>

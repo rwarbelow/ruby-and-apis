@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/ruby-and-apis/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/ruby-and-apis">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/flashcard-game">Flashcard Game</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/option-parser">Option Parser</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/configuration-with-yaml">Configuration with YAML Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/api-calls-with-faraday">Making API Calls with Faraday</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/openstruct">OpenStruct to create Ruby objects on the fly</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/openweathermap-api">Interacting with the OpenWeatherMap API through Ruby</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/api-project">API Project</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/intro-to-sinatra">Intro to Sinatra</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/building-routes-and-views-in-sinatra">Building Routes and Views in Sinatra</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/activerecord-and-postgres">ActiveRecord and Databases</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/mvc-structure">MVC Structure</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/deploying-to-heroku">Deploying to Heroku</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/building-crud-functionality">Building CRUD Functionality</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>Building CRUD Functionality</h2>
+<h3>Creating People</h3>
+
+<p>Let&#39;s add a way to create people. In the <code>index.erb</code>:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>All People<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="err">&lt;</span>% @people.each do |person| %&gt;
+    <span class="nt">&lt;li&gt;</span><span class="err">&lt;</span>%= person.first_name %&gt; <span class="err">&lt;</span>%= person.last_name %&gt; <span class="nt">&lt;/li&gt;</span>
+  <span class="err">&lt;</span>% end %&gt;
+<span class="nt">&lt;/ul&gt;</span>
+
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/people/new&quot;</span><span class="nt">&gt;</span>Add New Person<span class="nt">&lt;/a&gt;</span></code></pre></div>
+
+<p>We&#39;ve linked to this route, but we need to add an endpoint for it in our controller:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+
+<span class="k">class</span> <span class="nc">PeopleDatabaseApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="s2">&quot;Hello, world!&quot;</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="vi">@people</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span>
+    <span class="n">erb</span><span class="p">(</span><span class="ss">:index</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/new&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span><span class="p">(</span><span class="ss">:new</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Now that we&#39;ve told it to render the <code>:new</code> erb file, we need to make that inside of <code>views</code>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ touch app/views/new.erb
+</code></pre></div>
+<p>Inside of that file:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>New Person<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/people&quot;</span> <span class="na">method=</span><span class="s">&quot;POST&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;person[firstname]&quot;</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;person[firstname]&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;person[lastname]&quot;</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;person[lastname]&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></div>
+
+<p>Our form action is <code>&#39;/people&#39;</code> with a method of <code>POST</code>. We&#39;ll need to add this endpoint in the controller as well:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+
+<span class="k">class</span> <span class="nc">PeopleDatabaseApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="s2">&quot;Hello, world!&quot;</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="vi">@people</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span>
+    <span class="n">erb</span><span class="p">(</span><span class="ss">:index</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/new&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span><span class="p">(</span><span class="ss">:new</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">post</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:person</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<h3>Editing People</h3>
+
+<p>We&#39;ll first modify our index to include an edit link next to each individual person. When we click this link, we want it to bring us to a form to edit the individual person: </p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>All People<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="err">&lt;</span>% @people.each do |person| %&gt;
+    <span class="nt">&lt;li&gt;</span>
+      <span class="err">&lt;</span>%= person.firstname %&gt; <span class="err">&lt;</span>%= person.lastname %&gt; <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/people/&lt;%= person.id %&gt;/edit&quot;</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="err">&lt;</span>% end %&gt;
+<span class="nt">&lt;/ul&gt;</span>
+
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/people/new&quot;</span><span class="nt">&gt;</span>Add New Person<span class="nt">&lt;/a&gt;</span></code></pre></div>
+
+<p>Next, we&#39;ll add this route in our controller:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:dashboard</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="vi">@people</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span>
+    <span class="n">erb</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/new&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:new</span>
+  <span class="k">end</span>
+
+  <span class="n">post</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:person</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/:id/edit&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span>
+    <span class="n">erb</span> <span class="ss">:edit</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Now create the <code>edit</code> template:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ touch app/views/edit.erb
+</code></pre></div>
+<p>And make a form to edit the existing person:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>Edit<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/people/&lt;%= @person.id %&gt;&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">value=</span><span class="s">&quot;PUT&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;text&#39;</span> <span class="na">name=</span><span class="s">&#39;person[firstname]&#39;</span> <span class="na">value=</span><span class="s">&quot;&lt;%= @person.firstname %&gt;&quot;</span><span class="nt">/&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;text&#39;</span> <span class="na">name=</span><span class="s">&#39;person[lastname]&#39;</span> <span class="na">value=</span><span class="s">&quot;&lt;%= @person.lastname %&gt;&quot;</span><span class="nt">/&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;submit&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></div>
+
+<p>Notice that we&#39;ve embedded the id of the person in the URL. This is so we can determine which person we are updating when we hit submit. Now let&#39;s add an endpoint for this form submission in our controller:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">set</span> <span class="ss">:method_override</span><span class="p">,</span> <span class="kp">true</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:dashboard</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="vi">@people</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span>
+    <span class="n">erb</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/new&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:new</span>
+  <span class="k">end</span>
+
+  <span class="n">post</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:person</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/:id/edit&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span>
+    <span class="n">erb</span> <span class="ss">:edit</span>
+  <span class="k">end</span>
+
+  <span class="n">put</span> <span class="s1">&#39;/people/:id&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:person</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<h3>Deleting People</h3>
+
+<p>First, add a button to delete a person in the index:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>All People<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="err">&lt;</span>% @people.each do |person| %&gt;
+    <span class="nt">&lt;li&gt;</span>
+      <span class="err">&lt;</span>%= person.firstname %&gt; <span class="err">&lt;</span>%= person.lastname %&gt; <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/people/&lt;%= person.id %&gt;/edit&quot;</span><span class="nt">&gt;</span>Edit<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/people/&lt;%= person.id %&gt;&quot;</span> <span class="na">method=</span><span class="s">&quot;POST&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">value=</span><span class="s">&quot;DELETE&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;delete&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="err">&lt;</span>% end %&gt;
+<span class="nt">&lt;/ul&gt;</span>
+
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/people/new&quot;</span><span class="nt">&gt;</span>Add New Person<span class="nt">&lt;/a&gt;</span></code></pre></div>
+
+<p>Then add an endpoint in the controller:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">set</span> <span class="ss">:method_override</span><span class="p">,</span> <span class="kp">true</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:dashboard</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="vi">@people</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span>
+    <span class="n">erb</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/new&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:new</span>
+  <span class="k">end</span>
+
+  <span class="n">post</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:person</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people/:id/edit&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+    <span class="vi">@person</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">to_i</span><span class="p">)</span>
+    <span class="n">erb</span> <span class="ss">:edit</span>
+  <span class="k">end</span>
+
+  <span class="n">put</span> <span class="s1">&#39;/people/:id&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">params</span><span class="o">[</span><span class="ss">:person</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+
+  <span class="n">delete</span> <span class="s1">&#39;/people/:id&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="nb">id</span><span class="o">|</span>
+    <span class="no">Person</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">redirect</span> <span class="s1">&#39;/people&#39;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Now let&#39;s add, commit, and push our work to Heroku!</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git add .
+$ git commit -m &#39;build out CRUD functionality&#39;
+$ git push heroku master
+</code></pre></div>
+<p>We do not need to migrate on Heroku again since we did not create any new migration files (ie -- modify the database structure in some way). </p>
+
+<p>Navigate to your app in your browser and check it out! </p>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+

@@ -76,22 +76,67 @@
       <div class="col s9">
 
 
-<h2>API Project</h2>
-<h3>Nutrition</h3>
+<h2>Intro to Sinatra</h2>
+<p>Sinatra is a domain-specific language that allows easy access to making a Ruby web application. </p>
 
-<p>Use the <a href="http://www.nutritionix.com/business/api">Nutritionix API</a> to create an interface where a user enters the following command:</p>
+<h3>Review: How the Web Works</h3>
 
-<p>$ ruby nutrition.rb -f taco</p>
+<p>Let&#39;s diagram a very basic client-server model and figure out where Sinatra comes into play. </p>
 
-<p>Where -f represents a food to search for. The user should receive a CSV file containing nutrition information about tacos.</p>
+<h3>Up and Running</h3>
 
-<h3>Top News Stories</h3>
+<p>Let&#39;s set up our first Sinatra web application. We&#39;ll take our PeopleDatabase concept and move it to the web. First, make a directory for your project and change into that directory:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ mkdir people_database
+$ cd people_database
+</code></pre></div>
+<p>Then, we&#39;ll need an app file, a Gemfile, and a config file:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ touch app.rb
+$ touch config.ru
+$ touch Gemfile
+</code></pre></div>
+<p>Open the whole project inside of your text editor. </p>
 
-<p>Use the <a href="http://developer.nytimes.com/docs/top_stories_api/">NYTimes Top Stories API</a> to create an interface where a user enters the following command:</p>
+<h3>The Gemfile</h3>
 
-<p>$ ruby top_stories.rb -s sports</p>
+<p>The Gemfile is where we define which Ruby libraries (or &quot;gems&quot;) our project depends on. Inside <code>Gemfile</code>, add the following:</p>
 
-<p>Where -s represents the section. The user should receive a CSV file where the title is today&#39;s date and &quot;top-stories&quot; -- for example: 2016-1-8-top-stories.csv. The CSV should contain the article titles, authors, date published, abstract, and url to the article.  </p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="s1">&#39;sinatra/base&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;shotgun&#39;</span></code></pre></div>
+
+<p>In order to install these gems, and to generate a <code>Gemfile.lock</code> (which keeps track of Gem versions), we&#39;ll need to bundle. From the command line:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ gem install bundler
+$ bundle
+</code></pre></div>
+<p>Let&#39;s take a look at what was generated in the <code>Gemfile.lock</code>. </p>
+
+<h3>The Config File</h3>
+
+<p>The <code>config.ru</code> file will tell the webserver how to run our app.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;../app&#39;</span><span class="p">,</span>  <span class="bp">__FILE__</span><span class="p">)</span>
+
+<span class="n">run</span> <span class="no">PeopleDatabaseApp</span></code></pre></div>
+
+<h3>The App File</h3>
+
+<p>The <code>app.rb</code> file will be where we define our available routes (like &quot;http://localhost:9393/&quot; or &quot;http://localhost:9393/people&quot; or &quot;http://localhost:9393/people/new&quot;, etc.). </p>
+
+<p>To set up the most basic version of this file, add the following to <code>app.rb</code>:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+
+<span class="k">class</span> <span class="nc">PeopleDatabaseApp</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="s2">&quot;Hello, world!&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Now we have a very basic web app! Let&#39;s start it up and take a look in the browser.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ shotgun
+</code></pre></div>
+<p>Now navigate to <code>http://localhost:9393/</code>. </p>
 
 
        </div>

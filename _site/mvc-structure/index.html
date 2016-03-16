@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ruby and APIs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+  <link href="/ruby-and-apis/css/styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <nav>
+      <div class="nav-wrapper red darken-3">
+        <h3 class="brand-logo"><a href="/ruby-and-apis">Ruby and APIs</a></h3>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s3">
+        <div class="collection">
+          <ol>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/ruby-review">Ruby Review</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/debugging-tools">Debugging Tools</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/storing-and-manipulating-data-with-arrays">Storing and Manipulating Data with Arrays</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/storing-and-manipulating-data-with-hashes">Storing and Manipulating Data with Hashes</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/enumerable-methods">Enumerable Methods</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/reading-from-files">Reading from Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/writing-to-files">Writing to Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/scripting-find-and-replace">Scripting Find and Replace</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/reading-from-csvs">Reading from CSVs</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/writing-to-csvs">Writing to CSVs</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/creating-classes">Creating Classes</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/generating-and-parsing-json">Generating and Parsing JSON</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/flashcard-game">Flashcard Game</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/option-parser">Option Parser</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/configuration-with-yaml">Configuration with YAML Files</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/api-calls-with-faraday">Making API Calls with Faraday</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/openstruct">OpenStruct to create Ruby objects on the fly</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/openweathermap-api">Interacting with the OpenWeatherMap API through Ruby</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/api-project">API Project</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/intro-to-sinatra">Intro to Sinatra</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/building-routes-and-views-in-sinatra">Building Routes and Views in Sinatra</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/activerecord-and-postgres">ActiveRecord and Databases</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/mvc-structure">MVC Structure</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/deploying-to-heroku">Deploying to Heroku</a></li>
+            
+              <li><a class="collection-item" href="/ruby-and-apis/building-crud-functionality">Building CRUD Functionality</a></li>
+            
+          </ol>
+        </div>
+      </div>
+      <div class="col s9">
+
+
+<h2>MVC Structure</h2>
+<p>MVC is a software architecture pattern that is built into Rails and we can mimick in Sinatra. </p>
+
+<p>Here&#39;s a diagram of MVC from Adventured.co:</p>
+
+<p><img src="http://www.adventured.co/wp-content/uploads/2015/06/ruby-on-rails-architecture-01-mvc-architecture-best-ideas-lesson-01-the-mvc-architecture-for-ruby-on-rails.jpg" alt="mvc"></p>
+
+<p>We&#39;ll start by cloning down an ActiveRecord Sinatra starter repo. This will be our &quot;starter kit&quot; for any Sinatra web app that needs a database. </p>
+
+<p>Find the repository <a href="https://github.com/rwarbelow/sinatra_starter">here</a>. Once you have it cloned down (<code>git clone http://github.com/rwarbelow/sinatra_starter</code>), run <code>bundle</code> to install all of the necessary gems. We&#39;ll start by walking through the folders and files:</p>
+
+<ul>
+  <li>Gemfile</li>
+  <li>Rakefile</li>
+  <li>app/controllers</li>
+  <li>app/models</li>
+  <li>app/views</li>
+  <li>config/database.yml</li>
+  <li>config/database.rb</li>
+  <li>config/environment.rb</li>
+</ul>
+
+<p>Let&#39;s transfer over some of the functionality from our PeopleDatabase app. First, we&#39;ll need a database.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rake db:create
+</code></pre></div>
+<p>And we&#39;ll need table in our database:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rake db:create_migration NAME=create_people
+</code></pre></div>
+<p>Inside of that migration file, define the method that will create the people table:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreatePeople</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:people</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:firstname</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:lastname</span>
+      
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Go ahead and migrate. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rake db:migrate
+</code></pre></div>
+<p>And look at your schema:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># some comments</span>
+
+<span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Schema</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="ss">version</span><span class="p">:</span> <span class="mi">20160204213811</span><span class="p">)</span> <span class="k">do</span>
+
+  <span class="c1"># These are extensions that must be enabled in order to support this database</span>
+  <span class="n">enable_extension</span> <span class="s2">&quot;plpgsql&quot;</span>
+
+  <span class="n">create_table</span> <span class="s2">&quot;people&quot;</span><span class="p">,</span> <span class="ss">force</span><span class="p">:</span> <span class="ss">:cascade</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="s2">&quot;firstname&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">string</span>   <span class="s2">&quot;lastname&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="s2">&quot;created_at&quot;</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">datetime</span> <span class="s2">&quot;updated_at&quot;</span>
+  <span class="k">end</span>
+
+<span class="k">end</span></code></pre></div>
+
+<p>Looks good! Now we&#39;ll need a model so that we can use Ruby to access this table in our database.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ touch app/models/person.rb
+</code></pre></div>
+<p>We&#39;ll define the class and inherit from ActiveRecord:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Now let&#39;s add a route for showing all people. In <code>app/controllers/application.rb</code>:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+    <span class="n">erb</span> <span class="ss">:dashboard</span>
+  <span class="k">end</span>
+
+  <span class="n">get</span> <span class="s1">&#39;/people&#39;</span> <span class="k">do</span>
+    <span class="vi">@people</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">all</span> <span class="c1"># remember that the class name is singular</span>
+    <span class="n">erb</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
+
+<p>Now we&#39;ll need to make an <code>index.erb</code> file:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ touch app/views/index.erb
+</code></pre></div>
+<p>And inside of that file:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>All People<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="err">&lt;</span>% @people.each do |person| %&gt;
+    <span class="nt">&lt;li&gt;</span><span class="err">&lt;</span>%= person.firstname %&gt; <span class="err">&lt;</span>%= person.lastname %&gt;<span class="nt">&lt;/li&gt;</span>
+  <span class="err">&lt;</span>% end %&gt;
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<p>This file looks a little different from our previous version. This is because we are now passing in actual Person objects that have attributes, so we need to call those attributes in order to see the values. </p>
+
+<p>Let&#39;s see if it works. Start up your server ($ shotgun) and navigate to <code>http://localhost:9393/people</code>. You should see the heading &quot;All People&quot; but no people since we don&#39;t have any people in our database. That&#39;s ok!</p>
+
+<p>We can add some people in a very similar way to what we did with pry in the previous section. Shut down your server by pressing <code>control + c</code>. </p>
+
+<p>We&#39;ll use the gem <code>tux</code> to access a console where we can create people.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ tux
+Loading development environment (Rack 1.3)
+&gt;&gt; Person.create(firstname: &quot;rachel&quot;, lastname: &quot;warbelow&quot;)
+&gt;&gt; Person.create(firstname: &quot;bob&quot;, lastname: &quot;smith&quot;)
+&gt;&gt; Person.create(firstname: &quot;mary&quot;, lastname: &quot;smith&quot;)
+&gt;&gt; exit
+</code></pre></div>
+<p>Now start up the server again (<code>shotgun</code>) and navigate to <code>http://localhost:9393/people</code>. </p>
+
+
+       </div>
+     </div>
+   </div>
+   <footer class="page-footer white">
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col l6 s12">
+          <p class="">Content by Rachel Warbelow (rachelwarbelow@gmail.com)</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <ul>
+            <li><a class="" href="http://github.com/rwarbelow">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+</body>
+</html>
+
